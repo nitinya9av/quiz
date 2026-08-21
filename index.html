@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QuizMaster | Multi-Subject Interactive Quiz Platform</title>
+  <meta name="description"
+    content="Interactive, multi-subject quiz platform with instant scoring, timed challenges, topic filtering, performance analytics, and mistake review." />
+  <!-- Font Awesome Icons CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body class="theme-light">
+  <!-- Background visual mesh layers -->
+  <div class="bg-layer bg-layer-one" aria-hidden="true"></div>
+  <div class="bg-layer bg-layer-two" aria-hidden="true"></div>
+  <canvas id="confettiCanvas" class="confetti-canvas" aria-hidden="true"></canvas>
+
+  <main class="app-shell">
+    <!-- App Top Navigation Bar -->
+    <header class="app-navbar" role="banner">
+      <div class="nav-brand" id="navHomeBtn" role="button" tabindex="0" title="Go to Subject Hub">
+        <i class="fa-solid fa-bolt-lightning brand-icon" aria-hidden="true"></i>
+        <span class="brand-title">Quiz<span class="brand-accent">Master</span></span>
+      </div>
+
+      <nav class="nav-breadcrumbs" id="navBreadcrumbs" aria-label="Breadcrumb">
+        <span class="breadcrumb-item active" id="crumbHub">Hub</span>
+      </nav>
+
+      <div class="nav-controls">
+        <button id="soundToggleBtn" class="control-icon-btn" type="button" title="Toggle Sound Effects"
+          aria-label="Toggle Sound Effects">
+          <i id="soundIcon" class="fa-solid fa-volume-high" aria-hidden="true"></i>
+        </button>
+
+        <div class="global-stats-pill" id="globalStatsPill" title="Your overall study stats">
+          <span class="stats-streak"><i class="fa-solid fa-fire text-brand-orange" aria-hidden="true"></i> <span
+              id="streakCount">0</span>d</span>
+          <span class="stats-divider">|</span>
+          <span class="stats-acc"><i class="fa-solid fa-bullseye text-brand-pink" aria-hidden="true"></i> <span
+              id="overallAcc">0%</span></span>
+        </div>
+
+        <div class="theme-control" role="group" aria-label="Theme selection">
+          <label for="themeSelect"><i class="fa-solid fa-palette" aria-hidden="true"></i> Theme</label>
+          <select id="themeSelect">
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+            <option value="amoled">AMOLED</option>
+          </select>
+        </div>
+      </div>
+    </header>
+
+    <!-- PANEL 1: SUBJECT HUB (Multi-Subject Dashboard)               -->
+    <section id="subjectHubPanel" class="panel panel-hub" aria-labelledby="hubTitle">
+      <div class="hub-hero">
+        <div class="hub-hero-text">
+          <p class="eyebrow">Interactive Learning & Exam Arena</p>
+          <h1 id="hubTitle">Select Your Subject</h1>
+          <p class="hub-subtitle">
+            Choose from curated subject domains, build custom mixed exams, or practice with timed challenges.
+          </p>
+        </div>
+
+        <div class="hub-hero-actions">
+          <button id="launchMegaMixBtn" class="btn btn-primary btn-sparkle" type="button">
+            <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i> Mix & Match Exam
+          </button>
+          <button id="openImportModalBtn" class="btn btn-secondary" type="button">
+            <i class="fa-solid fa-file-import" aria-hidden="true"></i> Custom / Import
+          </button>
+        </div>
+      </div>
+
+      <!-- Global Dashboard Stats Summary -->
+      <div class="stats-dashboard-grid" id="statsDashboard">
+        <div class="stat-card">
+          <i class="fa-solid fa-book-bookmark stat-icon" aria-hidden="true"></i>
+          <div class="stat-details">
+            <span class="stat-value" id="statTotalQuizzes">0</span>
+            <span class="stat-label">Quizzes Completed</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <i class="fa-solid fa-list-check stat-icon" aria-hidden="true"></i>
+          <div class="stat-details">
+            <span class="stat-value" id="statQuestionsAnswered">0</span>
+            <span class="stat-label">Questions Answered</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <i class="fa-solid fa-crosshairs stat-icon" aria-hidden="true"></i>
+          <div class="stat-details">
+            <span class="stat-value" id="statAvgAccuracy">0%</span>
+            <span class="stat-label">Avg Accuracy</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <i class="fa-solid fa-trophy stat-icon text-brand-yellow" aria-hidden="true"></i>
+          <div class="stat-details">
+            <span class="stat-value" id="statMasteredCount">0</span>
+            <span class="stat-label">Subjects Mastered</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Subject Filter & Search Bar -->
+      <div class="hub-filter-bar">
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass search-icon" aria-hidden="true"></i>
+          <input type="text" id="subjectSearchInput" placeholder="Search subjects or topics..."
+            aria-label="Search subjects" />
+          <button id="clearSearchBtn" class="clear-search-btn hidden" type="button" aria-label="Clear search">
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+          </button>
+        </div>
+
+        <div class="category-chips-list" id="categoryChipsList" role="radiogroup"
+          aria-label="Filter subjects by category">
+          <button class="chip-filter active" data-category="all" type="button">
+            <i class="fa-solid fa-border-all" aria-hidden="true"></i> All Subjects
+          </button>
+          <button class="chip-filter" data-category="Computer Science & Engineering" type="button">
+            <i class="fa-solid fa-network-wired" aria-hidden="true"></i> CS & Engineering
+          </button>
+          <button class="chip-filter" data-category="Natural & Environmental Sciences" type="button">
+            <i class="fa-solid fa-seedling" aria-hidden="true"></i> Natural & Forestry Sciences
+          </button>
+          <button class="chip-filter" data-category="Custom" type="button">
+            <i class="fa-solid fa-user-pen" aria-hidden="true"></i> Custom
+          </button>
+        </div>
+      </div>
+
+      <!-- Subject Cards Grid -->
+      <div class="subject-cards-grid" id="subjectCardsGrid">
+        <!-- Dynamically populated via app.js -->
+      </div>
+    </section>
+
+    <!-- PANEL 2: QUIZ SETUP PANEL (Config for chosen subject)         -->
+    <section id="setupPanel" class="panel hidden" aria-labelledby="setupTitle">
+      <div class="setup-header">
+        <button id="backToHubBtn" class="btn btn-subtle" type="button">
+          <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Back to Subjects
+        </button>
+        <div class="subject-selected-badge" id="setupSubjectBadge">
+          <span id="setupSubjectIcon"><i class="fa-solid fa-tree" aria-hidden="true"></i></span>
+          <h2 id="setupSubjectTitle">Forestry & Wildlife Ecology</h2>
+        </div>
+      </div>
+
+      <p id="setupSubjectDesc" class="setup-subject-desc muted"></p>
+
+      <!-- Topic/Module Filter Accordion -->
+      <div class="control control-topics">
+        <div class="control-header-row">
+          <span id="topicSectionLabel"><i class="fa-solid fa-layer-group" aria-hidden="true"></i> Topics /
+            Modules</span>
+          <div class="topic-quick-selects">
+            <button id="selectAllTopicsBtn" class="btn-text-link" type="button">Select All</button>
+            <span class="text-divider">•</span>
+            <button id="deselectAllTopicsBtn" class="btn-text-link" type="button">Clear</button>
+          </div>
+        </div>
+
+        <div class="topic-picker" role="group" aria-label="Topic filter selection">
+          <label class="topic-chip topic-chip-all" for="allTopicsToggle">
+            <input id="allTopicsToggle" type="checkbox" checked />
+            <span id="allTopicsToggleLabel">All Topics</span>
+          </label>
+          <div id="topicCheckboxList" class="topic-checkbox-list">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Mode & Quiz Parameter Controls -->
+      <div class="controls-grid">
+        <!-- Quiz Mode -->
+        <label class="control">
+          <span><i class="fa-solid fa-gamepad" aria-hidden="true"></i> Quiz Mode</span>
+          <select id="modeSelect">
+            <option value="practice" selected>Standard Practice</option>
+            <option value="timed">Timed Exam Challenge</option>
+            <option value="study">Instant Study (Flashcards)</option>
+          </select>
+        </label>
+
+        <!-- Timer Duration (conditional for timed mode) -->
+        <label class="control" id="timerControl">
+          <span><i class="fa-solid fa-stopwatch" aria-hidden="true"></i> Time Limit</span>
+          <select id="timerDurationSelect">
+            <option value="auto">45s per Question (Auto)</option>
+            <option value="300">5 Minutes</option>
+            <option value="600">10 Minutes</option>
+            <option value="900" selected>15 Minutes</option>
+            <option value="1200">20 Minutes</option>
+            <option value="1800">30 Minutes</option>
+          </select>
+        </label>
+
+        <!-- Question Count -->
+        <label class="control">
+          <span><i class="fa-solid fa-arrow-down-1-9" aria-hidden="true"></i> Question Count</span>
+          <select id="countSelect">
+            <option value="5">5 Questions</option>
+            <option value="10">10 Questions</option>
+            <option value="15">15 Questions</option>
+            <option value="20" selected>20 Questions</option>
+            <option value="30">30 Questions</option>
+            <option value="40">40 Questions</option>
+            <option value="50">50 Questions</option>
+            <option value="100">100 Questions</option>
+            <option value="9999">All Available</option>
+          </select>
+        </label>
+
+        <!-- Question Order -->
+        <label class="control">
+          <span><i class="fa-solid fa-shuffle" aria-hidden="true"></i> Question Order</span>
+          <select id="orderSelect">
+            <option value="random" selected>Shuffled / Random</option>
+            <option value="sequential">Sequential Order</option>
+          </select>
+        </label>
+
+        <!-- Option Order -->
+        <label class="control">
+          <span><i class="fa-solid fa-arrows-split-up-and-left" aria-hidden="true"></i> Option Order</span>
+          <select id="optionOrderSelect">
+            <option value="random" selected>Shuffled Options</option>
+            <option value="sequential">Fixed (A, B, C, D)</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="setup-footer">
+        <div class="pool-info-wrapper">
+          <p id="questionPoolInfo" class="pool-info-text"></p>
+        </div>
+        <button id="startBtn" class="btn btn-primary btn-large">
+          <i class="fa-solid fa-rocket" aria-hidden="true"></i> Launch Quiz
+        </button>
+      </div>
+    </section>
+
+    <!-- PANEL 3: QUIZ ARENA PANEL (Active In-Quiz Interface)          -->
+    <section id="quizPanel" class="panel hidden" aria-live="polite">
+      <div class="quiz-top-bar">
+        <div class="quiz-meta-group">
+          <div class="quiz-subject-tag" id="quizSubjectTag">
+            <span id="quizSubjectTagIcon"><i class="fa-solid fa-tree" aria-hidden="true"></i></span>
+            <span id="quizSubjectTagTitle">Forestry</span>
+          </div>
+          <div>
+            <p id="progressLabel" class="progress-label">Question 1 of 20</p>
+            <p id="metaLabel" class="muted topic-meta-label">Topic details</p>
+          </div>
+        </div>
+
+        <div class="quiz-status-group">
+          <!-- Countdown Timer -->
+          <div id="quizTimerBadge" class="timer-badge hidden" aria-label="Time remaining">
+            <i class="fa-solid fa-stopwatch timer-icon" aria-hidden="true"></i>
+            <span id="timerDisplay">15:00</span>
+          </div>
+
+          <div class="score-pill" id="liveScore">Answered: 0/20</div>
+
+          <button id="togglePaletteBtn" class="palette-toggle-btn" type="button" title="Toggle Question Grid Navigator">
+            <i class="fa-solid fa-table-cells" aria-hidden="true"></i> <span class="palette-btn-text">Questions</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Question Palette / Grid Navigator Drawer -->
+      <div id="questionPaletteDrawer" class="question-palette-drawer hidden" aria-label="Question palette grid">
+        <div class="palette-header">
+          <h3>Question Navigator</h3>
+          <div class="palette-legend">
+            <span class="legend-item"><span class="legend-dot dot-current"></span> Current</span>
+            <span class="legend-item"><span class="legend-dot dot-answered"></span> Answered</span>
+            <span class="legend-item"><span class="legend-dot dot-flagged"></span> Flagged</span>
+            <span class="legend-item"><span class="legend-dot dot-unanswered"></span> Unanswered</span>
+          </div>
+          <button id="closePaletteBtn" class="close-palette-btn" type="button" aria-label="Close palette">
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div id="paletteGrid" class="palette-grid">
+          <!-- Number chips dynamically populated -->
+        </div>
+      </div>
+
+      <!-- Overall Progress Track -->
+      <div class="progress-track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+        <div id="progressBar" class="progress-fill"></div>
+      </div>
+
+      <!-- Active Question Card -->
+      <div class="question-card">
+        <div class="question-card-head">
+          <span class="topic-tag-chip" id="currentTopicTag">Topic</span>
+          <button id="flagQuestionBtn" class="flag-btn" type="button"
+            title="Bookmark question to review before submitting">
+            <i id="flagIcon" class="fa-regular fa-bookmark" aria-hidden="true"></i>
+            <span id="flagLabel">Bookmark</span>
+          </button>
+        </div>
+
+        <h2 id="questionText" class="question-text">Question text goes here</h2>
+
+        <!-- Instant Study Mode Feedback / Explanation Card -->
+        <div id="instantFeedbackBox" class="instant-feedback-box hidden">
+          <p id="instantFeedbackStatus" class="feedback-status"></p>
+          <p id="instantFeedbackExplanation" class="feedback-explanation"></p>
+        </div>
+
+        <div id="optionList" class="option-list" role="radiogroup" aria-label="Question options">
+          <!-- Option buttons dynamically populated -->
+        </div>
+      </div>
+
+      <!-- In-Quiz Bottom Navigation Actions -->
+      <div class="quiz-bottom-actions">
+        <div class="nav-button-group">
+          <button id="prevBtn" class="btn btn-secondary" type="button">
+            <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Previous
+          </button>
+          <button id="nextBtn" class="btn btn-secondary" type="button">
+            Next <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </button>
+          <button id="clearAnswerBtn" class="btn btn-subtle" type="button">
+            <i class="fa-solid fa-eraser" aria-hidden="true"></i> Clear Answer
+          </button>
+        </div>
+
+        <div class="submit-group">
+          <button id="submitBtn" class="btn btn-primary btn-submit" type="button">
+            Submit Quiz <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Keyboard Shortcuts Help -->
+      <div class="keyboard-hints" aria-hidden="true">
+        <span>Shortcuts:</span>
+        <kbd>1-4</kbd> Select Option •
+        <kbd>← / →</kbd> Prev/Next •
+        <kbd>F</kbd> Bookmark •
+        <kbd>Enter</kbd> Next
+      </div>
+    </section>
+
+    <!-- PANEL 4: RESULTS & PERFORMANCE ANALYTICS PANEL               -->
+    <section id="resultPanel" class="panel hidden" aria-live="polite">
+      <div class="result-hero-banner">
+        <div class="result-badge-col">
+          <div class="score-circle-graphic" id="scoreCircle">
+            <span class="score-number" id="resultScorePercent">0%</span>
+            <span class="score-subtext" id="resultGrade">Great</span>
+          </div>
+        </div>
+
+        <div class="result-details-col">
+          <p class="eyebrow" id="resultSubjectCategory">Subject Performance</p>
+          <h2 id="resultHeading">Quiz Complete!</h2>
+          <p id="resultSummary" class="result-summary"></p>
+          <p id="resultBest" class="result-best muted"></p>
+
+          <div class="result-metrics-grid">
+            <div class="metric-chip">
+              <span class="metric-label">Correct</span>
+              <span class="metric-value text-ok" id="metricCorrect">0</span>
+            </div>
+            <div class="metric-chip">
+              <span class="metric-label">Incorrect</span>
+              <span class="metric-value text-danger" id="metricIncorrect">0</span>
+            </div>
+            <div class="metric-chip">
+              <span class="metric-label">Unanswered</span>
+              <span class="metric-value muted" id="metricUnanswered">0</span>
+            </div>
+            <div class="metric-chip">
+              <span class="metric-label">Time Spent</span>
+              <span class="metric-value" id="metricTimeSpent">00:00</span>
+            </div>
+            <div class="metric-chip">
+              <span class="metric-label">Avg Speed</span>
+              <span class="metric-value" id="metricAvgSpeed">0s/q</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Topic Mastery Breakdown -->
+      <div class="topic-breakdown-section" id="topicBreakdownSection">
+        <h3>Topic Mastery Breakdown</h3>
+        <div id="topicBreakdownList" class="topic-breakdown-list">
+          <!-- Populated via app.js -->
+        </div>
+      </div>
+
+      <!-- Result Action Buttons -->
+      <div class="result-actions-bar">
+        <button id="retryMistakesBtn" class="btn btn-danger hidden" type="button">
+          <i class="fa-solid fa-rotate-left" aria-hidden="true"></i> Retry Mistakes Only (<span
+            id="mistakeCountBadge">0</span>)
+        </button>
+        <button id="retryBtn" class="btn btn-primary" type="button">
+          <i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i> Retake Quiz
+        </button>
+        <button id="reviewBtn" class="btn btn-secondary" type="button">
+          <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i> Review Mistakes
+        </button>
+        <button id="reviewCorrectBtn" class="btn btn-secondary" type="button">
+          <i class="fa-solid fa-circle-check" aria-hidden="true"></i> Review Correct Answers
+        </button>
+        <button id="returnToHubBtn" class="btn btn-subtle" type="button">
+          <i class="fa-solid fa-house" aria-hidden="true"></i> Return to Subject Hub
+        </button>
+      </div>
+
+      <!-- Review Question Lists -->
+      <div id="mistakeList" class="review-accordion-list hidden"></div>
+      <div id="correctList" class="review-accordion-list hidden"></div>
+    </section>
+  </main>
+
+  <!-- MODAL 1: MEGA MIX & MATCH EXAM BUILDER                       -->
+  <div id="megaMixModal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="megaMixTitle">
+    <div class="modal-content">
+      <div class="modal-head">
+        <h2 id="megaMixTitle"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i> Build Cross-Subject
+          Mega Quiz</h2>
+        <button id="closeMegaMixModalBtn" class="close-modal-btn" type="button" aria-label="Close modal">
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <p class="muted">
+        Select two or more subjects to create a balanced comprehensive test covering multiple disciplines.
+      </p>
+
+      <div class="mega-subject-picker" id="megaSubjectPicker">
+        <!-- Dynamically populated subject checkboxes -->
+      </div>
+
+      <div class="controls-grid modal-controls">
+        <label class="control">
+          <span><i class="fa-solid fa-arrow-down-1-9" aria-hidden="true"></i> Total Questions</span>
+          <select id="megaCountSelect">
+            <option value="15">15 Questions</option>
+            <option value="25" selected>25 Questions</option>
+            <option value="40">40 Questions</option>
+            <option value="60">60 Questions</option>
+            <option value="100">100 Questions</option>
+          </select>
+        </label>
+
+        <label class="control">
+          <span><i class="fa-solid fa-gamepad" aria-hidden="true"></i> Exam Mode</span>
+          <select id="megaModeSelect">
+            <option value="practice">Standard Practice</option>
+            <option value="timed" selected>Timed Challenge</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="modal-actions">
+        <button id="startMegaQuizBtn" class="btn btn-primary btn-large" type="button">
+          <i class="fa-solid fa-rocket" aria-hidden="true"></i> Start Mega Exam
+        </button>
+        <button id="cancelMegaMixBtn" class="btn btn-subtle" type="button">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 2: CUSTOM SUBJECT & QUESTION IMPORTER                  -->
+  <div id="importModal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="importTitle">
+    <div class="modal-content modal-content-large">
+      <div class="modal-head">
+        <h2 id="importTitle"><i class="fa-solid fa-file-import" aria-hidden="true"></i> Create or Import Custom Subject
+        </h2>
+        <button id="closeImportModalBtn" class="close-modal-btn" type="button" aria-label="Close modal">
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <p class="muted">
+        Add your own custom quiz subject with your own questions using JSON format.
+      </p>
+
+      <div class="import-form-grid">
+        <label class="control">
+          <span>Subject Title *</span>
+          <input type="text" id="importSubjectTitle" placeholder="e.g. Neuroscience & Brain" required />
+        </label>
+        <label class="control">
+          <span>Category</span>
+          <input type="text" id="importSubjectCategory" placeholder="e.g. Medical Sciences" />
+        </label>
+        <label class="control">
+          <span>Font Awesome Icon Class</span>
+          <input type="text" id="importSubjectIcon" placeholder="e.g. fa-solid fa-brain" />
+        </label>
+        <label class="control">
+          <span>Description</span>
+          <input type="text" id="importSubjectDesc" placeholder="Brief subject summary..." />
+        </label>
+      </div>
+
+      <div class="control" style="margin-top: 1rem;">
+        <div class="control-header-row">
+          <span>Questions (JSON Array) *</span>
+          <button id="loadSampleJsonBtn" class="btn-text-link" type="button">Load Sample Template</button>
+        </div>
+        <textarea id="importQuestionsJson" class="code-textarea" rows="9" placeholder='[
+  {
+    "question": "What is the primary excitatory neurotransmitter in the human brain?",
+    "options": ["GABA", "Glutamate", "Dopamine", "Serotonin"],
+    "answerIndex": 1,
+    "topicName": "Neurochemistry",
+    "explanation": "Glutamate is the most abundant excitatory neurotransmitter."
+  }
+]'></textarea>
+      </div>
+
+      <p id="importErrorMsg" class="error-msg hidden"></p>
+
+      <div class="modal-actions">
+        <button id="saveImportedSubjectBtn" class="btn btn-primary" type="button">
+          <i class="fa-solid fa-floppy-disk" aria-hidden="true"></i> Save Custom Subject
+        </button>
+        <button id="cancelImportBtn" class="btn btn-subtle" type="button">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="questions-data.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>

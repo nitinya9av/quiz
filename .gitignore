@@ -1,0 +1,14 @@
+# System & temporary files
+all_text.txt
+extracted_raw_text.json
+*.log
+.DS_Store
+Thumbs.db
+/data
+build-data.js
+parsed_new_subjects.json
+
+
+# Node / Bun (if added in the future)
+node_modules/
+bun.lockb
