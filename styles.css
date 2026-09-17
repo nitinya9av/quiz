@@ -673,9 +673,42 @@ h3 {
     font-weight: 700;
   }
 
+  .topic-chip-practice:has(input:checked) {
+    background: #dcd6f7;
+    font-weight: 700;
+  }
+
   .topic-chip-all:has(input:checked) {
     background: var(--brand-orange);
   }
+}
+
+.topic-section-title {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.2rem 0.3rem;
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  border-bottom: 2px dashed var(--border);
+  margin-top: 0.4rem;
+}
+
+.topic-section-title:first-child {
+  margin-top: 0;
+}
+
+.topic-section-title i {
+  color: var(--brand-orange);
+  font-size: 0.88rem;
+}
+
+.topic-chip-practice {
+  border-left: 4px solid var(--accent, #6c5ce7);
 }
 
 .controls-grid {

@@ -679,9 +679,22 @@ function renderTopicCheckboxes(subject) {
   topicCheckboxList.innerHTML = "";
   const topics = Array.isArray(subject.topics) ? subject.topics : [];
 
+  let currentSection = null;
+
   topics.forEach((topic) => {
+    if (topic.section && topic.section !== currentSection) {
+      currentSection = topic.section;
+      const sectionHeader = document.createElement("div");
+      sectionHeader.className = "topic-section-title";
+      sectionHeader.innerHTML = `<i class="${topic.sectionIcon || 'fa-solid fa-layer-group'}" aria-hidden="true"></i> <span>${topic.section}</span>`;
+      topicCheckboxList.appendChild(sectionHeader);
+    }
+
     const chip = document.createElement("label");
     chip.className = "topic-chip";
+    if (topic.section === "Practice Weeks") {
+      chip.classList.add("topic-chip-practice");
+    }
 
     const input = document.createElement("input");
     input.type = "checkbox";
@@ -702,7 +715,7 @@ function renderTopicCheckboxes(subject) {
 function getSelectedTopicIds() {
   if (allTopicsToggle.checked) return "all";
   const checked = [...topicCheckboxList.querySelectorAll("input[type='checkbox']:checked")];
-  return checked.map((input) => Number(input.value) || input.value);
+  return checked.map((input) => (isNaN(Number(input.value)) ? input.value : Number(input.value)));
 }
 
 function getFilteredQuestionPool() {
