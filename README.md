@@ -3,10 +3,10 @@ An interactive, multi-subject quiz platform featuring rich analytics, timed chal
 
 ---
 
-## 📚 Subject Catalog (220 Questions across 21 Modules)
+## 📚 Subject Catalog (230 Questions across 22 Modules)
 
 1. 🌲 **Forestry & Wildlife Ecology** (120 Questions • Weeks 1–12)
-2. 🌐 **Distributed Systems** (70 Questions • Weeks 1–7)
+2. 🌐 **Distributed Systems** (80 Questions • Weeks 1–8)
    - **Week 1**: Fundamentals & Spanning Trees
    - **Week 2**: Logical & Vector Clocks
    - **Week 3**: Mutual Exclusion Algorithms
@@ -14,6 +14,7 @@ An interactive, multi-subject quiz platform featuring rich analytics, timed chal
    - **Week 5**: Termination Detection & Weight-Throwing
    - **Week 6**: Randomized Algorithms & Leader Election
    - **Week 7**: MapReduce & Distributed Data Processing
+   - **Week 8**: Distributed Security, Kerberos & SSL
 3. ⚡ **Introduction to Internet of Things (IoT)** (30 Questions • Weeks 1–2)
 
 ---
@@ -41,7 +42,7 @@ npx serve .
 ├── index.html              # Main application shell and UI
 ├── styles.css              # Design system, themes (Light, Dark, AMOLED), and animations
 ├── app.js                  # Core quiz engine, timer, scoring, sound synthesizer, and UI logic
-├── questions-data.js       # Master question repository (220 questions across 3 subjects)
+├── questions-data.js       # Master question repository (230 questions across 3 subjects)
 ├── build-data.js           # Build script to compile questions-data.js
 ├── parsed_new_subjects.json# Structured JSON data for Distributed Systems & IoT
 ├── data/                   # Original course assignment PDF files

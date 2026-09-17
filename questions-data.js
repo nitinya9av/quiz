@@ -2117,7 +2117,7 @@ window.QUIZ_SUBJECTS = {
     "iconClass": "fa-solid fa-network-wired",
     "badgeColor": "#7aaef0",
     "accentColor": "#2980b9",
-    "description": "Comprehensive NPTEL Distributed Systems question bank: Spanning trees, logical and vector clocks, Suzuki-Kasami & Raymond mutual exclusion, deadlock detection graphs, termination detection, randomized algorithms, and MapReduce.",
+    "description": "Comprehensive NPTEL Distributed Systems question bank: Spanning trees, logical and vector clocks, Suzuki-Kasami & Raymond mutual exclusion, deadlock detection graphs, termination detection, randomized algorithms, MapReduce, and Kerberos/SSL security.",
     "topicType": "Week",
     "topics": [
       {
@@ -2147,6 +2147,10 @@ window.QUIZ_SUBJECTS = {
       {
         "id": 7,
         "name": "Week 7: MapReduce & Distributed Data Processing"
+      },
+      {
+        "id": 8,
+        "name": "Week 8: Distributed Security, Kerberos & SSL"
       }
     ],
     "questions": [
@@ -3269,6 +3273,166 @@ window.QUIZ_SUBJECTS = {
         "answerIndex": 0,
         "answer": "a",
         "explanation": "In distributed grep, the mapper outputs only the lines that match the given pattern."
+      },
+      {
+        "id": "DS_W8_Q1",
+        "week": 8,
+        "topicId": 8,
+        "topicName": "Week 8: Distributed Security, Kerberos & SSL",
+        "question": "In authentication, what does mutual authentication mean?",
+        "options": [
+          "Only the client verifies the server's identity",
+          "A third party verifies only the communication channel",
+          "Only the server verifies the client's identity",
+          "Both communicating principals verify each other's identity"
+        ],
+        "answerIndex": 3,
+        "answer": "d",
+        "explanation": "Mutual authentication (two-way authentication) ensures that both communicating parties verify and confirm each other's identity before establishing trust or exchanging data."
+      },
+      {
+        "id": "DS_W8_Q2",
+        "week": 8,
+        "topicId": 8,
+        "topicName": "Week 8: Distributed Security, Kerberos & SSL",
+        "question": "Which SSL component fragments data, optionally compresses it, applies MAC, encrypts it, and sends it through TCP?",
+        "options": [
+          "SSL Record Protocol",
+          "SSL Handshake Protocol",
+          "Ticket-Granting Server",
+          "Kerberos Authentication Server"
+        ],
+        "answerIndex": 0,
+        "answer": "a",
+        "explanation": "The SSL Record Protocol operates above TCP to take application data, fragment it, optionally compress it, compute and attach a Message Authentication Code (MAC), encrypt the payload, and transmit it."
+      },
+      {
+        "id": "DS_W8_Q3",
+        "week": 8,
+        "topicId": 8,
+        "topicName": "Week 8: Distributed Security, Kerberos & SSL",
+        "question": "Which statement best describes authentication?",
+        "options": [
+          "It verifies that a principal's claimed identity is valid",
+          "It guarantees that all messages are delivered in order",
+          "It assigns network addresses to distributed processes",
+          "It prevents all hardware failures in a distributed system"
+        ],
+        "answerIndex": 0,
+        "answer": "a",
+        "explanation": "Authentication is the security process of verifying the claimed identity of a principal (user, client, or server), distinguishing it from authorization (determining access permissions)."
+      },
+      {
+        "id": "DS_W8_Q4",
+        "week": 8,
+        "topicId": 8,
+        "topicName": "Week 8: Distributed Security, Kerberos & SSL",
+        "question": "Symmetric cryptography differs from asymmetric cryptography because symmetric cryptography uses:",
+        "options": [
+          "A public key for encryption and no key for decryption",
+          "A single shared private key for encryption and decryption",
+          "Two unrelated public keys for every message",
+          "A private key only for digital signatures"
+        ],
+        "answerIndex": 1,
+        "answer": "b",
+        "explanation": "Symmetric (secret-key) cryptography relies on a single shared secret key for both encryption and decryption, whereas asymmetric cryptography uses a mathematically linked public/private key pair."
+      },
+      {
+        "id": "DS_W8_Q5",
+        "week": 8,
+        "topicId": 8,
+        "topicName": "Week 8: Distributed Security, Kerberos & SSL",
+        "question": "In public-key cryptography, data encrypted with a public key can be decrypted using:",
+        "options": [
+          "Any public key available in the network",
+          "The same public key used for encryption",
+          "The corresponding private key",
+          "The receiver's password hash only"
+        ],
+        "answerIndex": 2,
+        "answer": "c",
+        "explanation": "In asymmetric public-key cryptography, data encrypted with an entity's public key can only be decrypted by the holder of the mathematically corresponding private key."
+      },
+      {
+        "id": "DS_W8_Q6",
+        "week": 8,
+        "topicId": 8,
+        "topicName": "Week 8: Distributed Security, Kerberos & SSL",
+        "question": "Kerberos primarily uses which design approach?",
+        "options": [
+          "Anonymous broadcasting without keys",
+          "A centralized clock-only authentication method",
+          "Public-key-only authentication without servers",
+          "Symmetric cryptography with trusted third-party authentication servers"
+        ],
+        "answerIndex": 3,
+        "answer": "d",
+        "explanation": "Kerberos is an authentication protocol based on the Needham-Schroeder protocol that uses symmetric-key cryptography with trusted third-party Key Distribution Centers (Authentication Server and Ticket-Granting Server)."
+      },
+      {
+        "id": "DS_W8_Q7",
+        "week": 8,
+        "topicId": 8,
+        "topicName": "Week 8: Distributed Security, Kerberos & SSL",
+        "question": "During initial registration in Kerberos, the Kerberos server stores:",
+        "options": [
+          "The user's plaintext password directly",
+          "A secret key derived from the user's password using a one-way function",
+          "The server ticket for every possible application server",
+          "The client's public key certificate"
+        ],
+        "answerIndex": 1,
+        "answer": "b",
+        "explanation": "Kerberos does not store passwords in plaintext; instead, it stores a symmetric secret key generated by passing the user's password through a one-way cryptographic hash function."
+      },
+      {
+        "id": "DS_W8_Q8",
+        "week": 8,
+        "topicId": 8,
+        "topicName": "Week 8: Distributed Security, Kerberos & SSL",
+        "question": "In Kerberos, the Ticket-Granting Ticket is mainly used by the client to:",
+        "options": [
+          "Replace the user password permanently",
+          "Directly access the final application server",
+          "Request a server-specific ticket from the Ticket-Granting Server",
+          "Disable the use of session keys"
+        ],
+        "answerIndex": 2,
+        "answer": "c",
+        "explanation": "After initial login to the Authentication Server (AS), the client receives a Ticket-Granting Ticket (TGT), which is subsequently presented to the Ticket-Granting Server (TGS) to obtain tickets for specific application services without re-entering the password."
+      },
+      {
+        "id": "DS_W8_Q9",
+        "week": 8,
+        "topicId": 8,
+        "topicName": "Week 8: Distributed Security, Kerberos & SSL",
+        "question": "Why is an authenticator used along with a Kerberos ticket?",
+        "options": [
+          "To prove knowledge of the session key and reduce replay attacks",
+          "To store the client password in plaintext",
+          "To increase the ticket lifetime indefinitely",
+          "To remove timestamps from the protocol"
+        ],
+        "answerIndex": 0,
+        "answer": "a",
+        "explanation": "An authenticator contains a fresh timestamp encrypted with the short-term session key, proving that the sender possesses the session key and preventing attackers from replaying intercepted tickets."
+      },
+      {
+        "id": "DS_W8_Q10",
+        "week": 8,
+        "topicId": 8,
+        "topicName": "Week 8: Distributed Security, Kerberos & SSL",
+        "question": "During SSL server authentication, the client uses the server's public key mainly to:",
+        "options": [
+          "Generate the server's private key",
+          "Replace the need for certificates",
+          "Decrypt the server's private certificate",
+          "Encrypt data used to compute the session secret"
+        ],
+        "answerIndex": 3,
+        "answer": "d",
+        "explanation": "During the SSL/TLS handshake, after verifying the server's digital certificate, the client uses the server's public key to encrypt a pre-master secret (or key exchange parameters), which both sides then use to derive symmetric session keys."
       }
     ]
   },
