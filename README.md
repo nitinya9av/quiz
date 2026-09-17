@@ -1,13 +1,19 @@
-# QuizMaster ⚡
-
+# 🎓 QuizMaster Pro
 An interactive, multi-subject quiz platform featuring rich analytics, timed challenges, instant study flashcards, topic filtering, mistake reviews, sound synthesis, and multiple theme options (Light, Dark, and AMOLED).
 
 ---
 
-## 📚 Subject Catalog (190 Questions across 18 Modules)
+## 📚 Subject Catalog (220 Questions across 21 Modules)
 
 1. 🌲 **Forestry & Wildlife Ecology** (120 Questions • Weeks 1–12)
-2. 🌐 **Distributed Systems** (40 Questions • Weeks 1–4)
+2. 🌐 **Distributed Systems** (70 Questions • Weeks 1–7)
+   - **Week 1**: Fundamentals & Spanning Trees
+   - **Week 2**: Logical & Vector Clocks
+   - **Week 3**: Mutual Exclusion Algorithms
+   - **Week 4**: Deadlocks & Wait-For Graphs
+   - **Week 5**: Termination Detection & Weight-Throwing
+   - **Week 6**: Randomized Algorithms & Leader Election
+   - **Week 7**: MapReduce & Distributed Data Processing
 3. ⚡ **Introduction to Internet of Things (IoT)** (30 Questions • Weeks 1–2)
 
 ---
@@ -17,14 +23,14 @@ An interactive, multi-subject quiz platform featuring rich analytics, timed chal
 ### Option 1: Direct in Browser / GitHub Pages
 Open `index.html` directly in any modern browser, or deploy to **GitHub Pages** (no build step or backend required).
 
-### Option 2: Local Server with Bun
-```bash
-bun -e "Bun.serve({ port: 3000, fetch(req) { const url = new URL(req.url); let path = url.pathname === '/' ? '/index.html' : url.pathname; const file = Bun.file('.' + path); return new Response(file); } }); console.log('Server running on http://localhost:3000');"
-```
-
-### Option 3: Local Server with Python
+### Option 2: Local Server with Python
 ```bash
 python -m http.server 3000
+```
+
+### Option 3: Local Server with Node / Bun
+```bash
+npx serve .
 ```
 
 ---
@@ -35,8 +41,8 @@ python -m http.server 3000
 ├── index.html              # Main application shell and UI
 ├── styles.css              # Design system, themes (Light, Dark, AMOLED), and animations
 ├── app.js                  # Core quiz engine, timer, scoring, sound synthesizer, and UI logic
-├── questions-data.js       # Master question repository (190 questions across 3 subjects)
-├── build-data.js           # Build script to generate and compile questions-data.js
+├── questions-data.js       # Master question repository (220 questions across 3 subjects)
+├── build-data.js           # Build script to compile questions-data.js
 ├── parsed_new_subjects.json# Structured JSON data for Distributed Systems & IoT
 ├── data/                   # Original course assignment PDF files
 ├── README.md               # Project documentation

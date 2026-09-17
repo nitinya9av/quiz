@@ -2117,7 +2117,7 @@ window.QUIZ_SUBJECTS = {
     "iconClass": "fa-solid fa-network-wired",
     "badgeColor": "#7aaef0",
     "accentColor": "#2980b9",
-    "description": "Comprehensive NPTEL Distributed Systems question bank: Spanning trees, logical and vector clocks, Suzuki-Kasami & Raymond mutual exclusion, and deadlock detection graphs.",
+    "description": "Comprehensive NPTEL Distributed Systems question bank: Spanning trees, logical and vector clocks, Suzuki-Kasami & Raymond mutual exclusion, deadlock detection graphs, termination detection, randomized algorithms, and MapReduce.",
     "topicType": "Week",
     "topics": [
       {
@@ -2135,6 +2135,18 @@ window.QUIZ_SUBJECTS = {
       {
         "id": 4,
         "name": "Week 4: Deadlocks & Wait-For Graphs"
+      },
+      {
+        "id": 5,
+        "name": "Week 5: Termination Detection & Weight-Throwing"
+      },
+      {
+        "id": 6,
+        "name": "Week 6: Randomized Algorithms & Leader Election"
+      },
+      {
+        "id": 7,
+        "name": "Week 7: MapReduce & Distributed Data Processing"
       }
     ],
     "questions": [
@@ -2777,6 +2789,486 @@ window.QUIZ_SUBJECTS = {
         "answerIndex": 3,
         "answer": "d",
         "explanation": "Path-pushing algorithms propagate dependency information by exchanging parts of the WFG."
+      },
+      {
+        "id": "DS_W5_Q1",
+        "week": 5,
+        "topicId": 5,
+        "topicName": "Week 5: Termination Detection & Weight-Throwing",
+        "question": "A distributed computation is said to have terminated when:",
+        "options": [
+          "At least one process becomes idle and no control messages are in transit",
+          "The root process receives a token from one child process",
+          "All processes are idle and there is no message in transit in any channel",
+          "Every process has sent at least one control message"
+        ],
+        "answerIndex": 2,
+        "answer": "c",
+        "explanation": "Termination requires both local idleness of all processes and absence of in-transit messages."
+      },
+      {
+        "id": "DS_W5_Q2",
+        "week": 5,
+        "topicId": 5,
+        "topicName": "Week 5: Termination Detection & Weight-Throwing",
+        "question": "In Huang's weight-throwing termination detection algorithm, the controlling agent concludes termination when:",
+        "options": [
+          "Every channel becomes FIFO",
+          "Its weight becomes 0",
+          "Its weight becomes 1",
+          "Every process sends a black token"
+        ],
+        "answerIndex": 2,
+        "answer": "c",
+        "explanation": "The controlling agent detects termination when the entire distributed weight returns to it."
+      },
+      {
+        "id": "DS_W5_Q3",
+        "week": 5,
+        "topicId": 5,
+        "topicName": "Week 5: Termination Detection & Weight-Throwing",
+        "question": "Why is termination detection difficult in a distributed computation?",
+        "options": [
+          "Each process has complete knowledge of the global state",
+          "No process has complete global knowledge and global time does not exist",
+          "Every process always remains active",
+          "All messages are delivered in a fixed round order"
+        ],
+        "answerIndex": 1,
+        "answer": "b",
+        "explanation": "The difficulty comes from the absence of complete global state knowledge and global time."
+      },
+      {
+        "id": "DS_W5_Q4",
+        "week": 5,
+        "topicId": 5,
+        "topicName": "Week 5: Termination Detection & Weight-Throwing",
+        "question": "A locally terminated process is one that:",
+        "options": [
+          "Has failed permanently and cannot receive messages",
+          "Has sent a control message to every other process",
+          "Is still sending basic messages to its neighbors",
+          "Has finished its computation and will restart only if it receives a message"
+        ],
+        "answerIndex": 3,
+        "answer": "d",
+        "explanation": "A locally terminated process is passive unless a received message reactivates it."
+      },
+      {
+        "id": "DS_W5_Q5",
+        "week": 5,
+        "topicId": 5,
+        "topicName": "Week 5: Termination Detection & Weight-Throwing",
+        "question": "Which design choice violates a requirement of a termination detection algorithm?",
+        "options": [
+          "It uses control messages only for detection",
+          "It allows the underlying computation to continue",
+          "It requires adding new communication channels between processes",
+          "It works with active and idle process states"
+        ],
+        "answerIndex": 2,
+        "answer": "c",
+        "explanation": "A termination detection algorithm should not require additional communication channels."
+      },
+      {
+        "id": "DS_W5_Q6",
+        "week": 5,
+        "topicId": 5,
+        "topicName": "Week 5: Termination Detection & Weight-Throwing",
+        "question": "In the active-idle process model, an idle process can become active only when:",
+        "options": [
+          "It receives a message from another process",
+          "It sends a control message to the root",
+          "Its local clock reaches a fixed threshold",
+          "The controlling agent becomes passive"
+        ],
+        "answerIndex": 0,
+        "answer": "a",
+        "explanation": "An idle process is reactivated only by receiving a message."
+      },
+      {
+        "id": "DS_W5_Q7",
+        "week": 5,
+        "topicId": 5,
+        "topicName": "Week 5: Termination Detection & Weight-Throwing",
+        "question": "In the distributed-snapshot based termination detection method, what does a process do when it changes from active to idle?",
+        "options": [
+          "It deletes all messages in transit",
+          "It sends a snapshot request to all processes and records its own local snapshot",
+          "It transfers its entire weight to the root process",
+          "It declares global termination immediately"
+        ],
+        "answerIndex": 1,
+        "answer": "b",
+        "explanation": "When becoming idle, the process initiates snapshot collection by requesting local snapshots."
+      },
+      {
+        "id": "DS_W5_Q8",
+        "week": 5,
+        "topicId": 5,
+        "topicName": "Week 5: Termination Detection & Weight-Throwing",
+        "question": "In the snapshot-based method, when is a snapshot request considered successful?",
+        "options": [
+          "When the requester alone records its local state",
+          "When the controlling agent receives weight 1",
+          "When at least one idle process grants the request",
+          "When all processes have taken a local snapshot for that request"
+        ],
+        "answerIndex": 3,
+        "answer": "d",
+        "explanation": "A successful request requires all processes to record local snapshots for it."
+      },
+      {
+        "id": "DS_W5_Q9",
+        "week": 5,
+        "topicId": 5,
+        "topicName": "Week 5: Termination Detection & Weight-Throwing",
+        "question": "In the weight-throwing method, what invariant is maintained during the computation?",
+        "options": [
+          "The sum of weights on active processes and in-transit messages remains 1",
+          "Every process always keeps weight 1",
+          "Every basic message carries zero weight",
+          "The controlling agent permanently loses its initial weight"
+        ],
+        "answerIndex": 0,
+        "answer": "a",
+        "explanation": "Weight is conserved; it is only distributed among processes, messages, and the controlling agent."
+      },
+      {
+        "id": "DS_W5_Q10",
+        "week": 5,
+        "topicId": 5,
+        "topicName": "Week 5: Termination Detection & Weight-Throwing",
+        "question": "In a spanning-tree based termination detection method, when can the root conclude termination?",
+        "options": [
+          "When it has terminated and all its immediate children have also reported termination",
+          "When any leaf node sends the first report",
+          "When a single process becomes idle",
+          "When all processes have sent basic messages"
+        ],
+        "answerIndex": 0,
+        "answer": "a",
+        "explanation": "The root concludes termination after its own termination and confirmation from its children."
+      },
+      {
+        "id": "DS_W6_Q1",
+        "week": 6,
+        "topicId": 6,
+        "topicName": "Week 6: Randomized Algorithms & Leader Election",
+        "question": "Which statement best distinguishes randomized algorithm analysis from average-case analysis of deterministic algorithms?",
+        "options": [
+          "Average-case analysis never uses probability",
+          "Deterministic algorithms always perform better than randomized ones",
+          "Randomized algorithms provide probabilistic guarantees for each input through random choices",
+          "Randomized analysis guarantees performance only for one selected input"
+        ],
+        "answerIndex": 2,
+        "answer": "c",
+        "explanation": "Randomized analysis considers different executions caused by random choices, even for the same input."
+      },
+      {
+        "id": "DS_W6_Q2",
+        "week": 6,
+        "topicId": 6,
+        "topicName": "Week 6: Randomized Algorithms & Leader Election",
+        "question": "In the randomized one-shot leader election algorithm for an anonymous synchronous ring, each processor chooses pseudo-identifier 2 with probability:",
+        "options": [
+          "(1/n)",
+          "(1/2)",
+          "(1 - 1/n)",
+          "(1/n^2)"
+        ],
+        "answerIndex": 0,
+        "answer": "a",
+        "explanation": "Each processor chooses pseudo-identifier 2 with probability (1/n) and pseudo-identifier 1 otherwise."
+      },
+      {
+        "id": "DS_W6_Q3",
+        "week": 6,
+        "topicId": 6,
+        "topicName": "Week 6: Randomized Algorithms & Leader Election",
+        "question": "What is the main purpose of using randomization in symmetric distributed settings?",
+        "options": [
+          "To remove the need for message passing",
+          "To guarantee zero communication cost",
+          "To make every processor execute the same transition",
+          "To create asymmetry among otherwise identical processors"
+        ],
+        "answerIndex": 3,
+        "answer": "d",
+        "explanation": "Random choices help break symmetry when processors do not have distinguishing identifiers."
+      },
+      {
+        "id": "DS_W6_Q4",
+        "week": 6,
+        "topicId": 6,
+        "topicName": "Week 6: Randomized Algorithms & Leader Election",
+        "question": "What additional input does a randomized processor transition function use?",
+        "options": [
+          "A global physical clock value",
+          "A random number drawn from a bounded range",
+          "The complete global state of all processors",
+          "A fixed identifier assigned by a central server"
+        ],
+        "answerIndex": 1,
+        "answer": "b",
+        "explanation": "A randomized algorithm extends the transition function by using random information such as a coin flip or bounded random number."
+      },
+      {
+        "id": "DS_W6_Q5",
+        "week": 6,
+        "topicId": 6,
+        "topicName": "Week 6: Randomized Algorithms & Leader Election",
+        "question": "In the relaxed randomized leader election formulation, which condition must hold with certainty?",
+        "options": [
+          "At most one processor is elected",
+          "Every processor eventually becomes leader",
+          "A leader is elected in every execution",
+          "All processors choose the same pseudo-identifier"
+        ],
+        "answerIndex": 0,
+        "answer": "a",
+        "explanation": "Safety must always hold, so the algorithm must never elect two leaders."
+      },
+      {
+        "id": "DS_W6_Q6",
+        "week": 6,
+        "topicId": 6,
+        "topicName": "Week 6: Randomized Algorithms & Leader Election",
+        "question": "What is relaxed in the randomized version of leader election for anonymous rings?",
+        "options": [
+          "The requirement that messages move around the ring",
+          "The requirement that processors communicate with neighbors",
+          "The requirement that processors use random values",
+          "The requirement that a leader must be elected in every execution"
+        ],
+        "answerIndex": 3,
+        "answer": "d",
+        "explanation": "The liveness condition is weakened so that leader election may succeed with nonzero probability."
+      },
+      {
+        "id": "DS_W6_Q7",
+        "week": 6,
+        "topicId": 6,
+        "topicName": "Week 6: Randomized Algorithms & Leader Election",
+        "question": "In the one-shot randomized leader election algorithm, a leader is elected when:",
+        "options": [
+          "Every processor chooses pseudo-identifier 2",
+          "No processor chooses pseudo-identifier 2",
+          "Exactly one processor chooses the unique maximum pseudo-identifier",
+          "All processors choose pseudo-identifier 1"
+        ],
+        "answerIndex": 2,
+        "answer": "c",
+        "explanation": "A unique maximum pseudo-identifier allows exactly one processor to decide itself as leader."
+      },
+      {
+        "id": "DS_W6_Q8",
+        "week": 6,
+        "topicId": 6,
+        "topicName": "Week 6: Randomized Algorithms & Leader Election",
+        "question": "If two processors choose pseudo-identifier 2 in the one-shot algorithm, what happens?",
+        "options": [
+          "Both processors are elected as leaders",
+          "No unique leader is elected in that execution",
+          "The processor with lower physical clock value is elected",
+          "The algorithm changes the ring into a tree"
+        ],
+        "answerIndex": 1,
+        "answer": "b",
+        "explanation": "More than one maximum pseudo-identifier removes uniqueness, so no single leader is elected."
+      },
+      {
+        "id": "DS_W6_Q9",
+        "week": 6,
+        "topicId": 6,
+        "topicName": "Week 6: Randomized Algorithms & Leader Election",
+        "question": "Why does the one-shot randomized algorithm have many possible executions on the same anonymous ring?",
+        "options": [
+          "Because every processor has a permanent unique identifier",
+          "Because messages are always lost randomly",
+          "Because the ring topology changes after every round",
+          "Because different random choices generate different executions"
+        ],
+        "answerIndex": 3,
+        "answer": "d",
+        "explanation": "The same input can lead to different executions depending on the random values chosen by processors."
+      },
+      {
+        "id": "DS_W6_Q10",
+        "week": 6,
+        "topicId": 6,
+        "topicName": "Week 6: Randomized Algorithms & Leader Election",
+        "question": "In the one-shot algorithm, after collecting all pseudo-identifiers around the ring, a processor can decide whether it is leader by checking:",
+        "options": [
+          "Whether its pseudo-identifier is the unique maximum",
+          "Whether it has the smallest local clock value",
+          "Whether it received the first message in the ring",
+          "Whether it has the largest number of neighbors"
+        ],
+        "answerIndex": 0,
+        "answer": "a",
+        "explanation": "The processor is elected only if its pseudo-identifier is strictly greater than all others."
+      },
+      {
+        "id": "DS_W7_Q1",
+        "week": 7,
+        "topicId": 7,
+        "topicName": "Week 7: MapReduce & Distributed Data Processing",
+        "question": "In MapReduce, the main responsibility of the Map function is to:",
+        "options": [
+          "Assign reduce tasks to worker machines",
+          "Merge all final output files into one file",
+          "Convert input key/value pairs into intermediate key/value pairs",
+          "Store metadata about worker failures"
+        ],
+        "answerIndex": 2,
+        "answer": "c",
+        "explanation": "The Map function processes input pairs and emits intermediate key/value pairs."
+      },
+      {
+        "id": "DS_W7_Q2",
+        "week": 7,
+        "topicId": 7,
+        "topicName": "Week 7: MapReduce & Distributed Data Processing",
+        "question": "In a MapReduce job, the partition function such as hash(key) mod R is mainly used to ensure that:",
+        "options": [
+          "Records with the same intermediate key go to the same reduce worker",
+          "Input files are split into equal-sized chunks only",
+          "All records are processed only by map workers",
+          "The master stores all intermediate data permanently"
+        ],
+        "answerIndex": 0,
+        "answer": "a",
+        "explanation": "Partitioning sends all values of the same key to the same reduce task."
+      },
+      {
+        "id": "DS_W7_Q3",
+        "week": 7,
+        "topicId": 7,
+        "topicName": "Week 7: MapReduce & Distributed Data Processing",
+        "question": "What is the main purpose of the Reduce function?",
+        "options": [
+          "To divide input files into map tasks",
+          "To merge values associated with the same intermediate key",
+          "To assign map workers to racks",
+          "To store file chunks in the distributed file system"
+        ],
+        "answerIndex": 1,
+        "answer": "b",
+        "explanation": "The Reduce function combines all intermediate values belonging to a given key."
+      },
+      {
+        "id": "DS_W7_Q4",
+        "week": 7,
+        "topicId": 7,
+        "topicName": "Week 7: MapReduce & Distributed Data Processing",
+        "question": "Why is a distributed file system important for MapReduce-style processing?",
+        "options": [
+          "It stores large files persistently despite node failures",
+          "It replaces the need for map and reduce functions",
+          "It forces all computation to run on one machine",
+          "It prevents workers from reading input splits"
+        ],
+        "answerIndex": 0,
+        "answer": "a",
+        "explanation": "A distributed file system provides persistent storage and replication for large data sets."
+      },
+      {
+        "id": "DS_W7_Q5",
+        "week": 7,
+        "topicId": 7,
+        "topicName": "Week 7: MapReduce & Distributed Data Processing",
+        "question": "In the word-count example, what does the Map function emit for each word?",
+        "options": [
+          "(document, word)",
+          "(word, 1)",
+          "(word, document size)",
+          "(count, word)"
+        ],
+        "answerIndex": 1,
+        "answer": "b",
+        "explanation": "For each word, the mapper emits the word as key and 1 as its count."
+      },
+      {
+        "id": "DS_W7_Q6",
+        "week": 7,
+        "topicId": 7,
+        "topicName": "Week 7: MapReduce & Distributed Data Processing",
+        "question": "In the word-count example, what does the Reduce function compute?",
+        "options": [
+          "The number of input splits",
+          "The total count for each word",
+          "The location of each document",
+          "The number of mapper machines"
+        ],
+        "answerIndex": 1,
+        "answer": "b",
+        "explanation": "The reducer sums all counts associated with the same word."
+      },
+      {
+        "id": "DS_W7_Q7",
+        "week": 7,
+        "topicId": 7,
+        "topicName": "Week 7: MapReduce & Distributed Data Processing",
+        "question": "What role does the master perform during MapReduce execution?",
+        "options": [
+          "It assigns map and reduce tasks to idle workers",
+          "It directly processes every input key/value pair",
+          "It stores all intermediate values permanently",
+          "It replaces both map and reduce functions"
+        ],
+        "answerIndex": 0,
+        "answer": "a",
+        "explanation": "The master coordinates execution by assigning tasks to available workers."
+      },
+      {
+        "id": "DS_W7_Q8",
+        "week": 7,
+        "topicId": 7,
+        "topicName": "Week 7: MapReduce & Distributed Data Processing",
+        "question": "Why is sorting/grouping performed before invoking the Reduce function?",
+        "options": [
+          "To group all intermediate values with the same key",
+          "To delete failed map workers from the cluster",
+          "To avoid using intermediate key/value pairs",
+          "To divide input files into physical chunks"
+        ],
+        "answerIndex": 0,
+        "answer": "a",
+        "explanation": "The reducer must receive all values associated with a particular key together."
+      },
+      {
+        "id": "DS_W7_Q9",
+        "week": 7,
+        "topicId": 7,
+        "topicName": "Week 7: MapReduce & Distributed Data Processing",
+        "question": "What is the main benefit of using a Combiner function?",
+        "options": [
+          "It increases the number of final output files",
+          "It performs partial aggregation before data is sent to reducers",
+          "It stores metadata for chunk servers",
+          "It prevents all map tasks from executing"
+        ],
+        "answerIndex": 1,
+        "answer": "b",
+        "explanation": "A combiner reduces intermediate data transfer by locally aggregating mapper output."
+      },
+      {
+        "id": "DS_W7_Q10",
+        "week": 7,
+        "topicId": 7,
+        "topicName": "Week 7: MapReduce & Distributed Data Processing",
+        "question": "In a distributed grep application, what does the Map function do?",
+        "options": [
+          "Emits a line if it matches the required pattern",
+          "Counts every word in every document",
+          "Sorts document identifiers for each word",
+          "Assigns web pages to different reducers"
+        ],
+        "answerIndex": 0,
+        "answer": "a",
+        "explanation": "In distributed grep, the mapper outputs only the lines that match the given pattern."
       }
     ]
   },
