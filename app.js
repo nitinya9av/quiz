@@ -262,6 +262,9 @@ const metaLabel = document.getElementById("metaLabel");
 const quizTimerBadge = document.getElementById("quizTimerBadge");
 const timerDisplay = document.getElementById("timerDisplay");
 const liveScore = document.getElementById("liveScore");
+const focusModeBtn = document.getElementById("focusModeBtn");
+const focusModeIcon = document.getElementById("focusModeIcon");
+const focusModeLabel = document.getElementById("focusModeLabel");
 const togglePaletteBtn = document.getElementById("togglePaletteBtn");
 const questionPaletteDrawer = document.getElementById("questionPaletteDrawer");
 const closePaletteBtn = document.getElementById("closePaletteBtn");
@@ -477,6 +480,9 @@ function initializeSubjects() {
 // PANEL NAVIGATION & BREADCRUMBS
 // -------------------------------------------------------------
 function showPanel(panel) {
+  if (panel !== quizPanel) {
+    disableFocusMode();
+  }
   [subjectHubPanel, setupPanel, quizPanel, resultPanel].forEach((p) => p.classList.add("hidden"));
   panel.classList.remove("hidden");
   window.scrollTo({ top: 0, behavior: "smooth" });
@@ -876,8 +882,40 @@ function launchQuizWithQuestions(questions, mode = "practice", durationSeconds =
 
   renderActiveQuestion();
   renderQuestionPalette();
+  enableFocusMode();
   showPanel(quizPanel);
   soundEffects.click();
+}
+
+// -------------------------------------------------------------
+// FOCUS MODE CONTROLLER
+// -------------------------------------------------------------
+function enableFocusMode() {
+  document.body.classList.add("focus-mode");
+  if (focusModeBtn) {
+    focusModeBtn.classList.add("active");
+    if (focusModeIcon) focusModeIcon.className = "fa-solid fa-compress";
+    if (focusModeLabel) focusModeLabel.textContent = "Focus";
+    focusModeBtn.setAttribute("title", "Focus Mode is ON. Click to show navbar.");
+  }
+}
+
+function disableFocusMode() {
+  document.body.classList.remove("focus-mode");
+  if (focusModeBtn) {
+    focusModeBtn.classList.remove("active");
+    if (focusModeIcon) focusModeIcon.className = "fa-solid fa-expand";
+    if (focusModeLabel) focusModeLabel.textContent = "Focus";
+    focusModeBtn.setAttribute("title", "Click to enter Focus Mode (hide navbar).");
+  }
+}
+
+function toggleFocusMode() {
+  if (document.body.classList.contains("focus-mode")) {
+    disableFocusMode();
+  } else {
+    enableFocusMode();
+  }
 }
 
 // -------------------------------------------------------------
@@ -1548,6 +1586,11 @@ function handleKeyboardShortcuts(event) {
 
   const key = event.key;
 
+  if (key === "Escape") {
+    toggleFocusMode();
+    return;
+  }
+
   if (["1", "2", "3", "4"].includes(key)) {
     const idx = Number(key) - 1;
     handleOptionSelect(idx);
@@ -1754,6 +1797,13 @@ function bindEvents() {
     importQuestionsJson.value = JSON.stringify(SAMPLE_JSON_TEMPLATE, null, 2);
   });
   saveImportedSubjectBtn.addEventListener("click", saveCustomSubject);
+
+  if (focusModeBtn) {
+    focusModeBtn.addEventListener("click", () => {
+      soundEffects.click();
+      toggleFocusMode();
+    });
+  }
 
   window.addEventListener("keydown", handleKeyboardShortcuts);
 }

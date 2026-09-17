@@ -851,11 +851,13 @@ select:focus, input:focus, textarea:focus {
   box-shadow: var(--shadow-sm);
 }
 
-.palette-toggle-btn {
+.palette-toggle-btn,
+.focus-toggle-btn {
   display: flex;
   align-items: center;
   gap: 0.35rem;
   background: var(--paper-strong);
+  color: var(--ink);
   border: var(--border-width) solid var(--border);
   border-radius: var(--radius-pill);
   padding: 0.3rem 0.75rem;
@@ -864,12 +866,18 @@ select:focus, input:focus, textarea:focus {
   font-weight: 700;
   cursor: pointer;
   box-shadow: var(--shadow-sm);
-  transition: transform 120ms ease, box-shadow 120ms ease;
+  transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease, color 120ms ease;
 }
 
-.palette-toggle-btn:hover {
+.palette-toggle-btn:hover,
+.focus-toggle-btn:hover {
   transform: translate(-2px, -2px);
   box-shadow: 5px 5px 0 var(--border);
+}
+
+.focus-toggle-btn.active {
+  background: var(--brand-cyan);
+  color: #030509;
 }
 
 /* Question Palette Drawer */
@@ -877,10 +885,12 @@ select:focus, input:focus, textarea:focus {
   background: var(--bg-base);
   border: var(--border-width) solid var(--border);
   border-radius: var(--radius-md);
-  padding: 0.85rem 1rem;
+  padding: 1rem 1.15rem;
   box-shadow: var(--shadow-sm);
-  margin-bottom: 1.1rem;
+  margin-bottom: 1.25rem;
   animation: drawer-slide 200ms ease both;
+  overflow: visible;
+  box-sizing: border-box;
 }
 
 @keyframes drawer-slide {
@@ -893,14 +903,14 @@ select:focus, input:focus, textarea:focus {
   justify-content: space-between;
   align-items: center;
   gap: 0.75rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.85rem;
   flex-wrap: wrap;
 }
 
 .palette-legend {
   display: flex;
   align-items: center;
-  gap: 0.65rem;
+  gap: 0.75rem;
   font-size: 0.75rem;
   font-weight: 700;
 }
@@ -908,7 +918,7 @@ select:focus, input:focus, textarea:focus {
 .legend-item {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.3rem;
 }
 
 .legend-dot {
@@ -916,6 +926,7 @@ select:focus, input:focus, textarea:focus {
   height: 9px;
   border-radius: 50%;
   border: 1.5px solid var(--border);
+  box-sizing: border-box;
 }
 
 .dot-current { background: var(--brand-blue); }
@@ -926,34 +937,48 @@ select:focus, input:focus, textarea:focus {
 .close-palette-btn {
   background: none;
   border: none;
-  font-size: 1rem;
+  color: var(--ink);
+  font-size: 1.15rem;
   font-weight: 700;
   cursor: pointer;
-  padding: 0.2rem 0.4rem;
+  padding: 0.25rem 0.5rem;
+  transition: color 120ms ease, transform 120ms ease;
+  line-height: 1;
+}
+
+.close-palette-btn:hover {
+  color: var(--brand-orange);
+  transform: scale(1.1);
 }
 
 .palette-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(36px, 1fr));
-  gap: 0.4rem;
-  max-height: 180px;
+  grid-template-columns: repeat(auto-fill, minmax(38px, 1fr));
+  gap: 0.55rem;
+  max-height: 200px;
   overflow-y: auto;
+  overflow-x: hidden;
+  padding: 8px 6px 10px 6px; /* Generous clearance prevents top/bottom pill & shadow clipping */
+  box-sizing: border-box;
 }
 
 .palette-pill {
-  height: 36px;
+  height: 38px;
+  min-width: 38px;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 2px solid var(--border);
   border-radius: var(--radius-sm);
   background: var(--paper-strong);
+  color: var(--ink);
   font-family: var(--font-mono);
   font-size: 0.85rem;
   font-weight: 700;
   cursor: pointer;
   box-shadow: 2px 2px 0 var(--border);
-  transition: transform 100ms ease, box-shadow 100ms ease;
+  box-sizing: border-box;
+  transition: transform 100ms ease, box-shadow 100ms ease, background 120ms ease, border-color 120ms ease;
 }
 
 .palette-pill:hover {
@@ -1031,6 +1056,7 @@ select:focus, input:focus, textarea:focus {
   align-items: center;
   gap: 0.35rem;
   background: var(--paper-strong);
+  color: var(--ink);
   border: 2px solid var(--border);
   border-radius: var(--radius-pill);
   padding: 0.25rem 0.65rem;
@@ -1626,7 +1652,6 @@ body.theme-dark .option-btn,
 body.theme-dark .control-icon-btn,
 body.theme-dark .theme-control,
 body.theme-dark .theme-control select,
-body.theme-dark .palette-pill,
 body.theme-dark .topic-chip,
 body.theme-dark .search-box input,
 body.theme-dark select,
@@ -1721,7 +1746,6 @@ body.theme-amoled .app-navbar,
 body.theme-amoled .control-icon-btn,
 body.theme-amoled .theme-control,
 body.theme-amoled .theme-control select,
-body.theme-amoled .palette-pill,
 body.theme-amoled .topic-chip,
 body.theme-amoled .search-box input,
 body.theme-amoled select,
@@ -1768,6 +1792,232 @@ body.theme-amoled .review-card.mistake {
 
 body.theme-amoled .review-card.correct {
   background: #112618;
+}
+
+body.theme-dark .palette-toggle-btn,
+body.theme-dark .flag-btn,
+body.theme-dark .focus-toggle-btn {
+  background: #172235;
+  color: var(--ink);
+  border-color: #334155;
+}
+
+body.theme-dark .palette-toggle-btn i,
+body.theme-dark .palette-toggle-btn span,
+body.theme-dark .flag-btn i,
+body.theme-dark .flag-btn span,
+body.theme-dark .focus-toggle-btn i,
+body.theme-dark .focus-toggle-btn span {
+  color: var(--ink);
+}
+
+body.theme-dark .flag-btn.active {
+  background: var(--brand-orange);
+  color: #030509;
+}
+
+body.theme-dark .flag-btn.active i,
+body.theme-dark .flag-btn.active span {
+  color: #030509;
+}
+
+body.theme-dark .focus-toggle-btn.active {
+  background: var(--brand-cyan);
+  color: #030509;
+}
+
+body.theme-dark .focus-toggle-btn.active i,
+body.theme-dark .focus-toggle-btn.active span {
+  color: #030509;
+}
+
+/* AMOLED Quiz Header Button Overrides */
+body.theme-amoled .palette-toggle-btn,
+body.theme-amoled .flag-btn,
+body.theme-amoled .focus-toggle-btn {
+  background: #0d121d !important;
+  color: #f0f6fc !important;
+  border-color: #384556 !important;
+  box-shadow: 2px 2px 0 #21262d;
+}
+
+body.theme-amoled .palette-toggle-btn i,
+body.theme-amoled .palette-toggle-btn span,
+body.theme-amoled .flag-btn i,
+body.theme-amoled .flag-btn span,
+body.theme-amoled .focus-toggle-btn i,
+body.theme-amoled .focus-toggle-btn span {
+  color: #f0f6fc !important;
+}
+
+body.theme-amoled .palette-toggle-btn:hover,
+body.theme-amoled .flag-btn:hover,
+body.theme-amoled .focus-toggle-btn:hover {
+  background: #192231 !important;
+  border-color: var(--brand-cyan) !important;
+}
+
+body.theme-amoled .flag-btn.active {
+  background: var(--brand-orange) !important;
+  border-color: var(--brand-orange) !important;
+}
+
+body.theme-amoled .flag-btn.active i,
+body.theme-amoled .flag-btn.active span {
+  color: #030509 !important;
+}
+
+body.theme-amoled .focus-toggle-btn.active {
+  background: var(--brand-cyan) !important;
+  border-color: var(--brand-cyan) !important;
+}
+
+body.theme-amoled .focus-toggle-btn.active i,
+body.theme-amoled .focus-toggle-btn.active span {
+  color: #030509 !important;
+}
+
+/* ============================================================ */
+/* QUESTION PALETTE THEME STYLES (DARK & AMOLED)                */
+/* ============================================================ */
+
+/* Dark Theme Palette */
+body.theme-dark .question-palette-drawer {
+  background: #0d1527;
+  border: 2px solid #334155;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+body.theme-dark .palette-header h3 {
+  color: #f1f5f9;
+}
+
+body.theme-dark .close-palette-btn {
+  color: #94a3b8;
+}
+
+body.theme-dark .close-palette-btn:hover {
+  color: #f8fafc;
+}
+
+body.theme-dark .palette-pill {
+  background: #1e293b !important;
+  color: #f1f5f9 !important;
+  border: 1.5px solid #475569 !important;
+  box-shadow: 2px 2px 0 #0f172a;
+}
+
+body.theme-dark .palette-pill:hover {
+  background: #334155 !important;
+  border-color: #38bdf8 !important;
+  transform: translate(-1px, -1px);
+}
+
+body.theme-dark .palette-pill.current {
+  background: #38bdf8 !important;
+  color: #030509 !important;
+  border-color: #38bdf8 !important;
+  box-shadow: 0 0 0 2px #0d1527, 2px 2px 0 #38bdf8 !important;
+}
+
+body.theme-dark .palette-pill.answered {
+  background: #10b981 !important;
+  color: #030509 !important;
+  border-color: #10b981 !important;
+}
+
+body.theme-dark .palette-pill.flagged {
+  background: #f59e0b !important;
+  color: #030509 !important;
+  border-color: #f59e0b !important;
+}
+
+body.theme-dark .palette-pill.answered.flagged {
+  background: linear-gradient(135deg, #10b981 50%, #f59e0b 50%) !important;
+  color: #030509 !important;
+}
+
+body.theme-dark .dot-current { background: #38bdf8; }
+body.theme-dark .dot-answered { background: #10b981; }
+body.theme-dark .dot-flagged { background: #f59e0b; }
+body.theme-dark .dot-unanswered { background: #1e293b; border-color: #475569; }
+
+/* AMOLED Theme Palette */
+body.theme-amoled .question-palette-drawer {
+  background: #030712;
+  border: 2px solid #374151;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.95);
+}
+
+body.theme-amoled .palette-header h3 {
+  color: #ffffff;
+}
+
+body.theme-amoled .close-palette-btn {
+  color: #9ca3af;
+}
+
+body.theme-amoled .close-palette-btn:hover {
+  color: #ffffff;
+}
+
+body.theme-amoled .palette-pill {
+  background: #111827 !important;
+  color: #f9fafb !important;
+  border: 1.5px solid #374151 !important;
+  box-shadow: 2px 2px 0 #000000;
+}
+
+body.theme-amoled .palette-pill:hover {
+  background: #1f2937 !important;
+  border-color: #38bdf8 !important;
+  transform: translate(-1px, -1px);
+}
+
+body.theme-amoled .palette-pill.current {
+  background: #38bdf8 !important;
+  color: #030509 !important;
+  border-color: #38bdf8 !important;
+  box-shadow: 0 0 0 2px #030712, 2px 2px 0 #38bdf8 !important;
+}
+
+body.theme-amoled .palette-pill.answered {
+  background: #10b981 !important;
+  color: #030509 !important;
+  border-color: #10b981 !important;
+}
+
+body.theme-amoled .palette-pill.flagged {
+  background: #f59e0b !important;
+  color: #030509 !important;
+  border-color: #f59e0b !important;
+}
+
+body.theme-amoled .palette-pill.answered.flagged {
+  background: linear-gradient(135deg, #10b981 50%, #f59e0b 50%) !important;
+  color: #030509 !important;
+}
+
+body.theme-amoled .dot-current { background: #38bdf8; }
+body.theme-amoled .dot-answered { background: #10b981; }
+body.theme-amoled .dot-flagged { background: #f59e0b; }
+body.theme-amoled .dot-unanswered { background: #111827; border-color: #374151; }
+
+/* ============================================================ */
+/* FOCUS MODE                                                   */
+/* ============================================================ */
+body.focus-mode .app-navbar {
+  display: none !important;
+}
+
+body.focus-mode .app-shell {
+  padding-top: 0.6rem;
+  max-width: 1040px;
+}
+
+body.focus-mode .quiz-panel {
+  border-width: 3px;
+  box-shadow: 6px 6px 0 var(--border);
 }
 
 /* ============================================================ */
