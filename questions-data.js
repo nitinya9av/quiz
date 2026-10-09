@@ -5389,7 +5389,7 @@ window.QUIZ_SUBJECTS = {
     "iconClass": "fa-solid fa-microchip",
     "badgeColor": "#53e7df",
     "accentColor": "#16a085",
-    "description": "NPTEL IIT Kharagpur IoT question bank: Sensors & actuators, ITU smart objects, MQTT publish-subscribe brokers, CoAP messaging, and IoT network architecture.",
+    "description": "Comprehensive 8-week NPTEL IIT Kharagpur IoT question bank (120 questions): Sensors & actuators, wireless protocols (HART, Z-Wave, NFC, Bluetooth, Zigbee), sensor networks, Arduino, Python, Raspberry Pi, and Software-Defined IoT Networking.",
     "topicType": "Week",
     "topics": [
       {
@@ -5399,6 +5399,30 @@ window.QUIZ_SUBJECTS = {
       {
         "id": 2,
         "name": "Week 2: IoT Protocols, MQTT & CoAP"
+      },
+      {
+        "id": 3,
+        "name": "Week 3: Wireless Technologies, HART, Z-Wave, NFC, Bluetooth & Zigbee"
+      },
+      {
+        "id": 4,
+        "name": "Week 4: Sensor Networks, Agricultural Intrusion Detection & Nano-networks"
+      },
+      {
+        "id": 5,
+        "name": "Week 5: Interoperability in IoT, Arduino & Sensors"
+      },
+      {
+        "id": 6,
+        "name": "Week 6: Python Programming for IoT & Raspberry Pi"
+      },
+      {
+        "id": 7,
+        "name": "Week 7: Implementation of IoT with Raspberry Pi, Socket Programming & SDN Intro"
+      },
+      {
+        "id": 8,
+        "name": "Week 8: Software-Defined IoT Networking & Cloud Computing"
       }
     ],
     "questions": [
@@ -5982,6 +6006,1781 @@ window.QUIZ_SUBJECTS = {
         ],
         "answer": "b",
         "explanation": "Passive RFID tags do not have their own power supply. They must first be powered inductively by an RFID reader before they can transmit information. Active RFID tags, in contrast, have their own power supply. Answer Location: Week 2, Module 10 (Connectivity Technologies - Part II) @ 19:30"
+      },
+      {
+        "id": "IOT_W3_Q1",
+        "week": 3,
+        "topicId": 3,
+        "topicName": "Week 3: Wireless Technologies, HART, Z-Wave, NFC, Bluetooth & Zigbee",
+        "number": 1,
+        "question": "State whether the following statement is true or false. Statement: There is no network layer in Wired HART",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answerIndex": 0,
+        "correctAnswers": [
+          0
+        ],
+        "answer": "a",
+        "explanation": "There is no network layer in Wired HART. See lecture 11 @ 05:22"
+      },
+      {
+        "id": "IOT_W3_Q2",
+        "week": 3,
+        "topicId": 3,
+        "topicName": "Week 3: Wireless Technologies, HART, Z-Wave, NFC, Bluetooth & Zigbee",
+        "number": 2,
+        "question": "Zwave operates at ________ MHz in the US and ________ MHz in Europe.",
+        "options": [
+          "1008,989",
+          "908.42, 868.42",
+          "767.56,855.28",
+          "None of these"
+        ],
+        "answerIndex": 1,
+        "correctAnswers": [
+          1
+        ],
+        "answer": "b",
+        "explanation": "Zwave operates at 908.42 MHz in the US and 868.42 MHz in Europe. See lecture 13 @ 3:40"
+      },
+      {
+        "id": "IOT_W3_Q3",
+        "week": 3,
+        "topicId": 3,
+        "topicName": "Week 3: Wireless Technologies, HART, Z-Wave, NFC, Bluetooth & Zigbee",
+        "number": 3,
+        "question": "Dumb behavior of sensor nodes is _______________ in nature (as it is dependent on the effects of the environmental conditions).",
+        "options": [
+          "Temporal",
+          "Spatial",
+          "Both (a) and (b)",
+          "None of these"
+        ],
+        "answerIndex": 0,
+        "correctAnswers": [
+          0
+        ],
+        "answer": "a",
+        "explanation": "Dumb behavior of sensor nodes is Temporal in nature (as it is dependent on the effects of the environmental conditions). See lecture 15 @ 05:40"
+      },
+      {
+        "id": "IOT_W3_Q4",
+        "week": 3,
+        "topicId": 3,
+        "topicName": "Week 3: Wireless Technologies, HART, Z-Wave, NFC, Bluetooth & Zigbee",
+        "number": 4,
+        "question": "The process of identifying channels consistently affected by interference and removing them from use is known as _________________.",
+        "options": [
+          "Channel Trimming",
+          "Channel Flushing",
+          "Both (a) and (b)",
+          "None of these"
+        ],
+        "answerIndex": 3,
+        "correctAnswers": [
+          3
+        ],
+        "answer": "d",
+        "explanation": "Channel Blacklisting identifies channels consistently affected by interference and removes them from use. See lecture 11 @ 07:30"
+      },
+      {
+        "id": "IOT_W3_Q5",
+        "week": 3,
+        "topicId": 3,
+        "topicName": "Week 3: Wireless Technologies, HART, Z-Wave, NFC, Bluetooth & Zigbee",
+        "number": 5,
+        "question": "The full form of NFC is",
+        "options": [
+          "Near Field Contact",
+          "Near Field Communication",
+          "Both (a) and (b)",
+          "Neither (a) nor (b)"
+        ],
+        "answerIndex": 1,
+        "correctAnswers": [
+          1
+        ],
+        "answer": "b",
+        "explanation": "The full form of NFC is Near Field Communication. See lecture 11 @ 17:44"
+      },
+      {
+        "id": "IOT_W3_Q6",
+        "week": 3,
+        "topicId": 3,
+        "topicName": "Week 3: Wireless Technologies, HART, Z-Wave, NFC, Bluetooth & Zigbee",
+        "number": 6,
+        "question": "State true or false. NFC works on the principle of magnetic induction.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answerIndex": 0,
+        "correctAnswers": [
+          0
+        ],
+        "answer": "a",
+        "explanation": "NFC works on the principle of magnetic induction. See lecture 11 @ 21:00"
+      },
+      {
+        "id": "IOT_W3_Q7",
+        "week": 3,
+        "topicId": 3,
+        "topicName": "Week 3: Wireless Technologies, HART, Z-Wave, NFC, Bluetooth & Zigbee",
+        "number": 7,
+        "question": "State whether the following statement is true or false. Statement: NFC tags found in supermarket products are examples of active NFC.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answerIndex": 1,
+        "correctAnswers": [
+          1
+        ],
+        "answer": "b",
+        "explanation": "Passive NFC tags found in supermarket products are examples of passive NFC. See lecture 11 @ 18:47"
+      },
+      {
+        "id": "IOT_W3_Q8",
+        "week": 3,
+        "topicId": 3,
+        "topicName": "Week 3: Wireless Technologies, HART, Z-Wave, NFC, Bluetooth & Zigbee",
+        "number": 8,
+        "question": "Bluetooth is based on ___________.",
+        "options": [
+          "Nanonets",
+          "Binarynets",
+          "Both (a) and (b)",
+          "None of these"
+        ],
+        "answerIndex": 3,
+        "correctAnswers": [
+          3
+        ],
+        "answer": "d",
+        "explanation": "Bluetooth is based on Piconets. See lecture 12 @ 01:55"
+      },
+      {
+        "id": "IOT_W3_Q9",
+        "week": 3,
+        "topicId": 3,
+        "topicName": "Week 3: Wireless Technologies, HART, Z-Wave, NFC, Bluetooth & Zigbee",
+        "number": 9,
+        "question": "A __________ in NFC emits a small electric current which creates a magnetic field that in turn bridges the physical space between the devices.",
+        "options": [
+          "reader",
+          "writer",
+          "destroyer",
+          "None of these"
+        ],
+        "answerIndex": 0,
+        "correctAnswers": [
+          0
+        ],
+        "answer": "a",
+        "explanation": "A reader in NFC emits a small electric current which creates a magnetic field that in turn bridges the physical space between the devices See lecture 11 @ 20:31"
+      },
+      {
+        "id": "IOT_W3_Q10",
+        "week": 3,
+        "topicId": 3,
+        "topicName": "Week 3: Wireless Technologies, HART, Z-Wave, NFC, Bluetooth & Zigbee",
+        "number": 10,
+        "question": "State true of false. Bluetooth technology is based on Ad-hoc network technology.",
+        "options": [
+          "False",
+          "True"
+        ],
+        "answerIndex": 1,
+        "correctAnswers": [
+          1
+        ],
+        "answer": "b",
+        "explanation": "Bluetooth technology is based on Ad-hoc network technology. See lecture 12 @ 02:30"
+      },
+      {
+        "id": "IOT_W3_Q11",
+        "week": 3,
+        "topicId": 3,
+        "topicName": "Week 3: Wireless Technologies, HART, Z-Wave, NFC, Bluetooth & Zigbee",
+        "number": 11,
+        "question": "State true or false. Zwave utilizes GFSK modulation and Hongkong channel encoding.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answerIndex": 1,
+        "correctAnswers": [
+          1
+        ],
+        "answer": "b",
+        "explanation": "Zwave utilizes GFSK modulation and Manchester channel encoding. See lecture 13 @ 07:36"
+      },
+      {
+        "id": "IOT_W3_Q12",
+        "week": 3,
+        "topicId": 3,
+        "topicName": "Week 3: Wireless Technologies, HART, Z-Wave, NFC, Bluetooth & Zigbee",
+        "number": 12,
+        "question": "The process of bypassing radio dead-spots is done using a message called ________ in Zwave.",
+        "options": [
+          "Ping",
+          "Healing",
+          "Frame",
+          "None of these"
+        ],
+        "answerIndex": 1,
+        "correctAnswers": [
+          1
+        ],
+        "answer": "b",
+        "explanation": "The process of bypassing radio dead-spots is done using a message called Healing in Zwave. See lecture 13 @ 11:34"
+      },
+      {
+        "id": "IOT_W3_Q13",
+        "week": 3,
+        "topicId": 3,
+        "topicName": "Week 3: Wireless Technologies, HART, Z-Wave, NFC, Bluetooth & Zigbee",
+        "number": 13,
+        "question": "State whether the following statement is true or false. Statement: Sensor nodes have unlimited battery life.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answerIndex": 1,
+        "correctAnswers": [
+          1
+        ],
+        "answer": "b",
+        "explanation": "Sensors nodes have limited battery life. See lecture 14 @ 13:15"
+      },
+      {
+        "id": "IOT_W3_Q14",
+        "week": 3,
+        "topicId": 3,
+        "topicName": "Week 3: Wireless Technologies, HART, Z-Wave, NFC, Bluetooth & Zigbee",
+        "number": 14,
+        "question": "State whether the following statement is true or false. Statement: The Link Manager Protocol in Bluetooth manages the establishment, authentication, link configuration.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answerIndex": 0,
+        "correctAnswers": [
+          0
+        ],
+        "answer": "a",
+        "explanation": "The Link Manager Protocol in Bluetooth manages the establishment, authentication, link configuration. See Page number – 157, Chapter - 7, Book - Introduction to IoT, Authors – Sudip Misra, Anandarup Mukherjee, and Arijit Roy, Publisher – Cambridge University Press, Edition – 1 (2021)"
+      },
+      {
+        "id": "IOT_W3_Q15",
+        "week": 3,
+        "topicId": 3,
+        "topicName": "Week 3: Wireless Technologies, HART, Z-Wave, NFC, Bluetooth & Zigbee",
+        "number": 15,
+        "question": "Zigbee commonly uses __________data rate.",
+        "options": [
+          "250 kbps",
+          "250 Mbps",
+          "260 kbps",
+          "260 Mbps"
+        ],
+        "answerIndex": 0,
+        "correctAnswers": [
+          0
+        ],
+        "answer": "a",
+        "explanation": "Zigbee commonly uses 250 kbps data rate. See Page number – 131, Chapter - 7, Book - Introduction to IoT, Authors – Sudip Misra, Anandarup Mukherjee, and Arijit Roy, Publisher – Cambridge University Press, Edition – 1 (2021)"
+      },
+      {
+        "id": "IOT_W4_Q1",
+        "week": 4,
+        "topicId": 4,
+        "topicName": "Week 4: Sensor Networks, Agricultural Intrusion Detection & Nano-networks",
+        "number": 1,
+        "question": "What does the ultrasonic sensor measure generally in the AID system?",
+        "options": [
+          "Humidity",
+          "Distance of the object",
+          "Soil pH",
+          "Light intensity"
+        ],
+        "answerIndex": 1,
+        "correctAnswers": [
+          1
+        ],
+        "answer": "b",
+        "explanation": "In the Agricultural Intrusion Detection system, the ultrasonic sensor measures the distance at which the detected object is located. See Lecture 16: Sensor Networks – Part III @ 13:22"
+      },
+      {
+        "id": "IOT_W4_Q2",
+        "week": 4,
+        "topicId": 4,
+        "topicName": "Week 4: Sensor Networks, Agricultural Intrusion Detection & Nano-networks",
+        "number": 2,
+        "question": "Which component processes the data received from the sensors in the AID system?",
+        "options": [
+          "Camera",
+          "NFC tag",
+          "Microcontroller",
+          "Ultrasonic sensor"
+        ],
+        "answerIndex": 2,
+        "correctAnswers": [
+          2
+        ],
+        "answer": "c",
+        "explanation": "The microcontroller processes the data received from the sensors in the AID system. See Lecture 16: Sensor Networks - Part III @ 17:07"
+      },
+      {
+        "id": "IOT_W4_Q3",
+        "week": 4,
+        "topicId": 4,
+        "topicName": "Week 4: Sensor Networks, Agricultural Intrusion Detection & Nano-networks",
+        "number": 3,
+        "question": "How can standard nanodevices communicate?",
+        "options": [
+          "Electromagnetic communication",
+          "Molecular communication",
+          "Wired Ethernet",
+          "ZigBee communication"
+        ],
+        "answerIndex": 0,
+        "correctAnswers": [
+          0,
+          1
+        ],
+        "answer": "a, b",
+        "explanation": "The lecture discusses electromagnetic and molecular communication for nanodevices. See Lecture 16: Sensor Networks - Part III @ 25:11"
+      },
+      {
+        "id": "IOT_W4_Q4",
+        "week": 4,
+        "topicId": 4,
+        "topicName": "Week 4: Sensor Networks, Agricultural Intrusion Detection & Nano-networks",
+        "number": 4,
+        "question": "When does sensing coverage guarantee network connectivity?",
+        "options": [
+          "When the transmission range is at least twice the sensing range",
+          "When the sensing range is at least twice the transmission range",
+          "When the transmission and sensing ranges are equal",
+          "When the transmission range is smaller than the sensing range"
+        ],
+        "answerIndex": 0,
+        "correctAnswers": [
+          0
+        ],
+        "answer": "a",
+        "explanation": "Sensing coverage guarantees connectivity when the transmission range is at least twice the sensing range. See Lecture 17: Sensor Networks - Part IV @ 04:14"
+      },
+      {
+        "id": "IOT_W4_Q5",
+        "week": 4,
+        "topicId": 4,
+        "topicName": "Week 4: Sensor Networks, Agricultural Intrusion Detection & Nano-networks",
+        "number": 5,
+        "question": "Which of the following is a coverage problem in a static WSN?",
+        "options": [
+          "Area coverage",
+          "Data compression",
+          "Route encryption",
+          "Clock synchronization"
+        ],
+        "answerIndex": 0,
+        "correctAnswers": [
+          0
+        ],
+        "answer": "a",
+        "explanation": "Area coverage is a standard coverage problem in a static wireless sensor network. The other options are networking tasks, not coverage categories. See Lecture 17: Sensor Networks - Part IV @ 11:30"
+      },
+      {
+        "id": "IOT_W4_Q6",
+        "week": 4,
+        "topicId": 4,
+        "topicName": "Week 4: Sensor Networks, Agricultural Intrusion Detection & Nano-networks",
+        "number": 6,
+        "question": "Which reporting method is used for forest-fire monitoring in a WSN?",
+        "options": [
+          "Event-driven reporting",
+          "On-demand reporting",
+          "Manual reporting",
+          "Location-based reporting"
+        ],
+        "answerIndex": 0,
+        "correctAnswers": [
+          0
+        ],
+        "answer": "a",
+        "explanation": "Forest-fire monitoring uses event-driven reporting because sensor nodes report data when a fire-related event is detected. The lecture contrasts this with on-demand reporting, such as an inventory- control system. See Lecture 17: Sensor Networks – Part IV @ 01:44."
+      },
+      {
+        "id": "IOT_W4_Q7",
+        "week": 4,
+        "topicId": 4,
+        "topicName": "Week 4: Sensor Networks, Agricultural Intrusion Detection & Nano-networks",
+        "number": 7,
+        "question": "What does a data mule do?",
+        "options": [
+          "Replaces all sensor nodes",
+          "Measures only temperature",
+          "Collects data and carries it to the sink",
+          "Repairs damaged hardware"
+        ],
+        "answerIndex": 2,
+        "correctAnswers": [
+          2
+        ],
+        "answer": "c",
+        "explanation": "A data mule visits sensor nodes, collects their data, and delivers it to the sink. See Lecture 18: Sensor Networks - Part V @ 07:15"
+      },
+      {
+        "id": "IOT_W4_Q8",
+        "week": 4,
+        "topicId": 4,
+        "topicName": "Week 4: Sensor Networks, Agricultural Intrusion Detection & Nano-networks",
+        "number": 8,
+        "question": "What may happen if a critical stationary sensor node fails?",
+        "options": [
+          "The network may be partitioned",
+          "All nodes become mobile",
+          "The sensing range doubles",
+          "The network repairs itself by movement"
+        ],
+        "answerIndex": 0,
+        "correctAnswers": [
+          0
+        ],
+        "answer": "a",
+        "explanation": "Failure of a critical stationary node may divide the network into disconnected parts. See Lecture 18: Sensor Networks - Part V @ 00:43"
+      },
+      {
+        "id": "IOT_W4_Q9",
+        "week": 4,
+        "topicId": 4,
+        "topicName": "Week 4: Sensor Networks, Agricultural Intrusion Detection & Nano-networks",
+        "number": 9,
+        "question": "A person who provides sensing information acts as a:",
+        "options": [
+          "Router",
+          "Radio channel",
+          "Actuator",
+          "Data source"
+        ],
+        "answerIndex": 3,
+        "correctAnswers": [
+          3
+        ],
+        "answer": "d",
+        "explanation": "In human-centric sensing, a person may act as a data source by providing or collecting information. See Lecture 18: Sensor Networks - Part V @ 12:35"
+      },
+      {
+        "id": "IOT_W4_Q10",
+        "week": 4,
+        "topicId": 4,
+        "topicName": "Week 4: Sensor Networks, Agricultural Intrusion Detection & Nano-networks",
+        "number": 10,
+        "question": "Which is an advantage of a stationary wireless sensor network?",
+        "options": [
+          "Easy topology maintenance",
+          "Automatic movement after node failure",
+          "Continuously changing topology",
+          "Unpredictable sensor locations"
+        ],
+        "answerIndex": 0,
+        "correctAnswers": [
+          0
+        ],
+        "answer": "a",
+        "explanation": "In a stationary wireless sensor network, sensor nodes remain fixed. Therefore, deployment and topology maintenance are comparatively easier. See Lecture 18: Sensor Networks – Part V @ 00:43"
+      },
+      {
+        "id": "IOT_W4_Q11",
+        "week": 4,
+        "topicId": 4,
+        "topicName": "Week 4: Sensor Networks, Agricultural Intrusion Detection & Nano-networks",
+        "number": 11,
+        "question": "State whether the following statement is True or False. Statement: In a UAV network, the network topology may change frequently because the UAVs are mobile.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answerIndex": 0,
+        "correctAnswers": [
+          0
+        ],
+        "answer": "a",
+        "explanation": "UAVs move from one location to another, causing frequent changes in their relative positions and communication links. Therefore, the network topology may change frequently. See Lecture 19: UAV Networks @ 05:23"
+      },
+      {
+        "id": "IOT_W4_Q12",
+        "week": 4,
+        "topicId": 4,
+        "topicName": "Week 4: Sensor Networks, Agricultural Intrusion Detection & Nano-networks",
+        "number": 12,
+        "question": "Which is a common issue in UAV networks?",
+        "options": [
+          "Frequent topology changes",
+          "Fixed relative positions",
+          "Permanent communication links",
+          "No possibility of UAV failure"
+        ],
+        "answerIndex": 0,
+        "correctAnswers": [
+          0
+        ],
+        "answer": "a",
+        "explanation": "UAV movement causes frequent changes in network topology and communication links. See Lecture 19: UAV Networks @ 05:23"
+      },
+      {
+        "id": "IOT_W4_Q13",
+        "week": 4,
+        "topicId": 4,
+        "topicName": "Week 4: Sensor Networks, Agricultural Intrusion Detection & Nano-networks",
+        "number": 13,
+        "question": "Compared with traditional SCADA, M2M supports:",
+        "options": [
+          "Only isolated systems",
+          "No device communication",
+          "Continuous human control",
+          "Cross-platform integration"
+        ],
+        "answerIndex": 3,
+        "correctAnswers": [
+          3
+        ],
+        "answer": "d",
+        "explanation": "Traditional SCADA commonly uses isolated proprietary systems, while M2M supports cross-platform integration. See Lecture 20: Machine to Machine Communication @ 04:28"
+      },
+      {
+        "id": "IOT_W4_Q14",
+        "week": 4,
+        "topicId": 4,
+        "topicName": "Week 4: Sensor Networks, Agricultural Intrusion Detection & Nano-networks",
+        "number": 14,
+        "question": "State whether the following statement is True or False. Statement: In a stationary wireless sensor network, sensor nodes can automatically move to restore connectivity after a node failure.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answerIndex": 1,
+        "correctAnswers": [
+          1
+        ],
+        "answer": "b",
+        "explanation": "In a stationary wireless sensor network, sensor nodes remain fixed. Therefore, they cannot move automatically to repair connectivity after a node failure. See Lecture 18: Sensor Networks – Part V @ 00:43"
+      },
+      {
+        "id": "IOT_W4_Q15",
+        "week": 4,
+        "topicId": 4,
+        "topicName": "Week 4: Sensor Networks, Agricultural Intrusion Detection & Nano-networks",
+        "number": 15,
+        "question": "Which statement best describes M2M communication?",
+        "options": [
+          "Devices can exchange data without direct human control",
+          "Every data exchange must be performed manually",
+          "Only one device can communicate at a time",
+          "Devices cannot communicate through a network"
+        ],
+        "answerIndex": 0,
+        "correctAnswers": [
+          0
+        ],
+        "answer": "a",
+        "explanation": "M2M communication allows machines or devices to exchange data automatically. Human intervention may still be required for maintenance and operational stability. See Lecture 20: Machine to Machine Communication @ 09:24."
+      },
+      {
+        "id": "IOT_W5_Q1",
+        "week": 5,
+        "topicId": 5,
+        "topicName": "Week 5: Interoperability in IoT, Arduino & Sensors",
+        "number": 1,
+        "question": "What does interoperability allow IoT devices to do?",
+        "options": [
+          "Communicate and exchange data",
+          "Work only offline",
+          "Use only one protocol",
+          "Disable other devices"
+        ],
+        "answerIndex": 0,
+        "correctAnswers": [
+          0
+        ],
+        "answer": "a",
+        "explanation": "Interoperability enables different IoT devices and systems to communicate and exchange data. See Lecture 21 (Interoperability in Internet of Things) @ 03:30"
+      },
+      {
+        "id": "IOT_W5_Q2",
+        "week": 5,
+        "topicId": 5,
+        "topicName": "Week 5: Interoperability in IoT, Arduino & Sensors",
+        "number": 2,
+        "question": "Syntactic interoperability deals with:",
+        "options": [
+          "Message format",
+          "Battery size",
+          "Device colour",
+          "Sensor weight"
+        ],
+        "answerIndex": 0,
+        "correctAnswers": [
+          0
+        ],
+        "answer": "a",
+        "explanation": "Syntactic interoperability concerns the format of messages exchanged between devices and users. See Lecture 21 (Interoperability in Internet of Things) @ 17:01"
+      },
+      {
+        "id": "IOT_W5_Q3",
+        "week": 5,
+        "topicId": 5,
+        "topicName": "Week 5: Interoperability in IoT, Arduino & Sensors",
+        "number": 3,
+        "question": "What does UMB stand for?",
+        "options": [
+          "Universal Middleware Bridge",
+          "Unified Mobile Board",
+          "Universal Memory Block",
+          "User Management Bridge"
+        ],
+        "answerIndex": 0,
+        "correctAnswers": [
+          0
+        ],
+        "answer": "a",
+        "explanation": "UMB stands for Universal Middleware Bridge. It helps different middleware-based devices work together. See Lecture 21 (Interoperability in Internet of Things) @ 25:42"
+      },
+      {
+        "id": "IOT_W5_Q4",
+        "week": 5,
+        "topicId": 5,
+        "topicName": "Week 5: Interoperability in IoT, Arduino & Sensors",
+        "number": 4,
+        "question": "What is the operating voltage of the Arduino UNO?",
+        "options": [
+          "3.3 V",
+          "5 V",
+          "9 V",
+          "12 V"
+        ],
+        "answerIndex": 1,
+        "correctAnswers": [
+          1
+        ],
+        "answer": "b",
+        "explanation": "The Arduino UNO operates at 5 volts. See Lecture 22: Introduction to Arduino Programming – Part I @ 06:57."
+      },
+      {
+        "id": "IOT_W5_Q5",
+        "week": 5,
+        "topicId": 5,
+        "topicName": "Week 5: Interoperability in IoT, Arduino & Sensors",
+        "number": 5,
+        "question": "What is a program written in the Arduino IDE called?",
+        "options": [
+          "Packet",
+          "Sketch",
+          "Frame",
+          "Query"
+        ],
+        "answerIndex": 1,
+        "correctAnswers": [
+          1
+        ],
+        "answer": "b",
+        "explanation": "A program created and uploaded using the Arduino IDE is called a sketch. See Lecture 22 (Introduction to Arduino Programming - Part I) @ 12:12"
+      },
+      {
+        "id": "IOT_W5_Q6",
+        "week": 5,
+        "topicId": 5,
+        "topicName": "Week 5: Interoperability in IoT, Arduino & Sensors",
+        "number": 6,
+        "question": "Which interface is mainly used to connect an Arduino UNO to a computer?",
+        "options": [
+          "HDMI",
+          "USB",
+          "VGA",
+          "Ethernet"
+        ],
+        "answerIndex": 1,
+        "correctAnswers": [
+          1
+        ],
+        "answer": "b",
+        "explanation": "The Arduino UNO uses a USB interface to connect to a computer. The USB connection can be used to upload programs to the board and also provide power during development. See Lecture 22: Introduction to Arduino Programming – Part I @ 07:26"
+      },
+      {
+        "id": "IOT_W5_Q7",
+        "week": 5,
+        "topicId": 5,
+        "topicName": "Week 5: Interoperability in IoT, Arduino & Sensors",
+        "number": 7,
+        "question": "What is the conventional starting index of an array in Arduino programming?",
+        "options": [
+          "-1",
+          "0",
+          "1",
+          "2"
+        ],
+        "answerIndex": 1,
+        "correctAnswers": [
+          1
+        ],
+        "answer": "b",
+        "explanation": "As in C and C++, Arduino arrays use zero-based indexing. Therefore, the first element is stored at index 0. See Lecture 23 (Introduction to Arduino Programming - Part II) @ 04:08"
+      },
+      {
+        "id": "IOT_W5_Q8",
+        "week": 5,
+        "topicId": 5,
+        "topicName": "Week 5: Interoperability in IoT, Arduino & Sensors",
+        "number": 8,
+        "question": "Which Arduino function is used to generate a pseudo-random number within a specified range?",
+        "options": [
+          "random()",
+          "pinMode()",
+          "digitalWrite()",
+          "attachInterrupt()"
+        ],
+        "answerIndex": 0,
+        "correctAnswers": [
+          0
+        ],
+        "answer": "a",
+        "explanation": "The random() function generates a pseudo-random number in a specified range. For example, random(max) produces a value within the range defined by max. See Lecture 23 (Introduction to Arduino Programming - Part II) @ 09:19"
+      },
+      {
+        "id": "IOT_W5_Q9",
+        "week": 5,
+        "topicId": 5,
+        "topicName": "Week 5: Interoperability in IoT, Arduino & Sensors",
+        "number": 9,
+        "question": "In the traffic-control example, which LED is switched ON first to represent the GO signal?",
+        "options": [
+          "Red LED",
+          "Yellow LED",
+          "Green LED",
+          "All three LEDs simultaneously"
+        ],
+        "answerIndex": 2,
+        "correctAnswers": [
+          2
+        ],
+        "answer": "c",
+        "explanation": "The traffic() function first sets the green LED HIGH and displays the GO message. After a delay, it switches to yellow and then red. See Lecture 23 (Introduction to Arduino Programming - Part II) @ 14:34"
+      },
+      {
+        "id": "IOT_W5_Q10",
+        "week": 5,
+        "topicId": 5,
+        "topicName": "Week 5: Interoperability in IoT, Arduino & Sensors",
+        "number": 10,
+        "question": "Which quantities are measured by a DHT sensor?",
+        "options": [
+          "Temperature and humidity",
+          "Distance and speed",
+          "Light and sound",
+          "Pressure and altitude"
+        ],
+        "answerIndex": 0,
+        "correctAnswers": [
+          0
+        ],
+        "answer": "a",
+        "explanation": "A DHT sensor measures the temperature and humidity of its surroundings. See Lecture 24: Integration of Sensors and Actuators with Arduino – Part I @ 04:37."
+      },
+      {
+        "id": "IOT_W5_Q11",
+        "week": 5,
+        "topicId": 5,
+        "topicName": "Week 5: Interoperability in IoT, Arduino & Sensors",
+        "number": 11,
+        "question": "What does a sensor convert a physical quantity into?",
+        "options": [
+          "A software program",
+          "Mechanical motion",
+          "A network address",
+          "An electrical signal"
+        ],
+        "answerIndex": 3,
+        "correctAnswers": [
+          3
+        ],
+        "answer": "d",
+        "explanation": "A sensor is an electronic element that converts a physical quantity or measurement into an electrical signal. See Lecture 24: Integration of Sensors and Actuators with Arduino – Part I, Sensors section."
+      },
+      {
+        "id": "IOT_W5_Q12",
+        "week": 5,
+        "topicId": 5,
+        "topicName": "Week 5: Interoperability in IoT, Arduino & Sensors",
+        "number": 12,
+        "question": "In the DHT sensor sketch, delay(2000) causes successive readings to be printed after approximately how much time?",
+        "options": [
+          "0.2 seconds",
+          "1 second",
+          "2 seconds",
+          "20 seconds"
+        ],
+        "answerIndex": 2,
+        "correctAnswers": [
+          2
+        ],
+        "answer": "c",
+        "explanation": "The delay() function takes time in milliseconds. Therefore, delay(2000) introduces a delay of 2000 milliseconds, which equals 2 seconds. See Lecture 24 (Integration of Sensors and Actuators with Arduino - Part I) @ 13:34"
+      },
+      {
+        "id": "IOT_W5_Q13",
+        "week": 5,
+        "topicId": 5,
+        "topicName": "Week 5: Interoperability in IoT, Arduino & Sensors",
+        "number": 13,
+        "question": "State whether the following statement is True or False. Statement: A servo motor is a low-precision motor used only for linear motion.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answerIndex": 1,
+        "correctAnswers": [
+          1
+        ],
+        "answer": "b",
+        "explanation": "A servo motor is a high-precision motor that provides controlled rotary motion. See Lecture 25: Integration of Sensors and Actuators with Arduino – Part II @ 04:30."
+      },
+      {
+        "id": "IOT_W5_Q14",
+        "week": 5,
+        "topicId": 5,
+        "topicName": "Week 5: Interoperability in IoT, Arduino & Sensors",
+        "number": 14,
+        "question": "Which device provides controlled rotary motion?",
+        "options": [
+          "Ultrasonic sensor",
+          "DHT sensor",
+          "PIR sensor",
+          "Servo motor"
+        ],
+        "answerIndex": 3,
+        "correctAnswers": [
+          3
+        ],
+        "answer": "d",
+        "explanation": "A servo motor is an actuator that provides precise and controlled rotary motion. See Lecture 25: Integration of Sensors and Actuators with Arduino – Part II @ 04:30."
+      },
+      {
+        "id": "IOT_W5_Q15",
+        "week": 5,
+        "topicId": 5,
+        "topicName": "Week 5: Interoperability in IoT, Arduino & Sensors",
+        "number": 15,
+        "question": "State whether the following statement is True or False. Statement: A stepper motor is a type of actuator.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answerIndex": 0,
+        "correctAnswers": [
+          0
+        ],
+        "answer": "a",
+        "explanation": "A stepper motor is one of the motor actuators discussed in the lecture. Other examples include servo motors, hydraulic motors, solenoids, relays, and AC motors. See Lecture 25: Integration of Sensors and Actuators with Arduino – Part II @ 03:20."
+      },
+      {
+        "id": "IOT_W6_Q1",
+        "week": 6,
+        "topicId": 6,
+        "topicName": "Week 6: Python Programming for IoT & Raspberry Pi",
+        "number": 1,
+        "question": "What are the five basic data types available in Python, as introduced in the lecture?",
+        "options": [
+          "Numbers, Strings, List, Tuple, Dictionary",
+          "Integer, Float, Boolean, Char, Byte",
+          "Array, Struct, Class, Object, Set",
+          "Numbers, Strings, Queue, Stack, Graph"
+        ],
+        "answerIndex": 0,
+        "correctAnswers": [
+          0
+        ],
+        "answer": "a",
+        "explanation": "The lecture states that Python has five data types: Numbers, String, List, Tuple, and Dictionary. See Lecture 26 (Introduction to Python Programming – Part I) @ 15:50"
+      },
+      {
+        "id": "IOT_W6_Q2",
+        "week": 6,
+        "topicId": 6,
+        "topicName": "Week 6: Python Programming for IoT & Raspberry Pi",
+        "number": 2,
+        "question": "Which keyword is used to define a function in Python?",
+        "options": [
+          "func",
+          "def",
+          "define",
+          "function"
+        ],
+        "answerIndex": 1,
+        "correctAnswers": [
+          1
+        ],
+        "answer": "b",
+        "explanation": "A function in Python is defined using the def keyword, followed by the function name and its arguments. See Lecture 26 (Introduction to Python Programming – Part I) @ 19:20"
+      },
+      {
+        "id": "IOT_W6_Q3",
+        "week": 6,
+        "topicId": 6,
+        "topicName": "Week 6: Python Programming for IoT & Raspberry Pi",
+        "number": 3,
+        "question": "In Python's exception handling, which keyword is used to handle an exception raised inside the try block?",
+        "options": [
+          "catch",
+          "except",
+          "handle",
+          "rescue"
+        ],
+        "answerIndex": 1,
+        "correctAnswers": [
+          1
+        ],
+        "answer": "b",
+        "explanation": "Python uses the try, except and else block structure for exception handling; the except block catches the exception raised in the try block. See Lecture 26 (Introduction to Python Programming – Part I) @ 28:55"
+      },
+      {
+        "id": "IOT_W6_Q4",
+        "week": 6,
+        "topicId": 6,
+        "topicName": "Week 6: Python Programming for IoT & Raspberry Pi",
+        "number": 4,
+        "question": "Which mode of Python's open() function is used to add data to the end of an existing file without erasing its existing content?",
+        "options": [
+          "r (read mode)",
+          "w (write mode)",
+          "a (append mode)",
+          "r+ (read and write mode)"
+        ],
+        "answerIndex": 2,
+        "correctAnswers": [
+          2
+        ],
+        "answer": "c",
+        "explanation": "Python supports four basic file modes: r (read), w (write), a (append), and r+ (read and write). The append mode adds new data to the end of the file without deleting existing content. See Lecture 27 (Introduction to Python Programming – Part II) @ 02:55"
+      },
+      {
+        "id": "IOT_W6_Q5",
+        "week": 6,
+        "topicId": 6,
+        "topicName": "Week 6: Python Programming for IoT & Raspberry Pi",
+        "number": 5,
+        "question": "Which Python library, installable via pip, is used for image read/write operations as covered in the lecture?",
+        "options": [
+          "NumPy",
+          "PIL / Pillow",
+          "OpenCV",
+          "Matplotlib"
+        ],
+        "answerIndex": 1,
+        "correctAnswers": [
+          1
+        ],
+        "answer": "b",
+        "explanation": "PIL (Python Image Library) is used to work with image files. It is installed using 'sudo pip install pillow'; PIL supports up to Python 2.7 while Pillow supports Python 3.x. See Lecture 27 (Introduction to Python Programming – Part II) @ 17:25"
+      },
+      {
+        "id": "IOT_W6_Q6",
+        "week": 6,
+        "topicId": 6,
+        "topicName": "Week 6: Python Programming for IoT & Raspberry Pi",
+        "number": 6,
+        "question": "Which socket_type value is used while creating a TCP/IP socket in Python's socket module?",
+        "options": [
+          "SOCK_DGRAM",
+          "SOCK_STREAM",
+          "SOCK_RAW",
+          "SOCK_SEQPACKET"
+        ],
+        "answerIndex": 1,
+        "correctAnswers": [
+          1
+        ],
+        "answer": "b",
+        "explanation": "A socket is created using socket.socket(socket_family, socket_type, protocol). For a TCP/IP (connection-oriented) socket, socket_family is AF_INET and socket_type is SOCK_STREAM. See Lecture 27 (Introduction to Python Programming – Part II) @ 24:40"
+      },
+      {
+        "id": "IOT_W6_Q7",
+        "week": 6,
+        "topicId": 6,
+        "topicName": "Week 6: Python Programming for IoT & Raspberry Pi",
+        "number": 7,
+        "question": "How many GPIO pins does the Raspberry Pi 3 Model B have, as shown in the specifications table?",
+        "options": [
+          "26",
+          "32",
+          "40",
+          "44"
+        ],
+        "answerIndex": 2,
+        "correctAnswers": [
+          2
+        ],
+        "answer": "c",
+        "explanation": "As per the specifications table, the Raspberry Pi 3 Model B, Raspberry Pi 2 Model B, and Raspberry Pi Zero all have 40 GPIO pins. See Lecture 28 (Introduction to Raspberry Pi – Part I) @ 05:10"
+      },
+      {
+        "id": "IOT_W6_Q8",
+        "week": 6,
+        "topicId": 6,
+        "topicName": "Week 6: Python Programming for IoT & Raspberry Pi",
+        "number": 8,
+        "question": "Which of the following is an officially supported operating system for Raspberry Pi mentioned in the lecture?",
+        "options": [
+          "Raspbian",
+          "Windows XP",
+          "macOS",
+          "Solaris"
+        ],
+        "answerIndex": 0,
+        "correctAnswers": [
+          0
+        ],
+        "answer": "a",
+        "explanation": "Raspbian and NOOBS are the officially supported operating systems for Raspberry Pi. Ubuntu Mate, Snappy Ubuntu Core, Windows 10 Core, Pinet, and RISC OS are examples of third-party operating systems. See Lecture 28 (Introduction to Raspberry Pi – Part I) @ 12:05"
+      },
+      {
+        "id": "IOT_W6_Q9",
+        "week": 6,
+        "topicId": 6,
+        "topicName": "Week 6: Python Programming for IoT & Raspberry Pi",
+        "number": 9,
+        "question": "Raspberry Pi is best described as a:",
+        "options": [
+          "Printer",
+          "Smartphone",
+          "Wi-Fi router",
+          "Single-board computer"
+        ],
+        "answerIndex": 3,
+        "correctAnswers": [
+          3
+        ],
+        "answer": "d",
+        "explanation": "The lecture introduces Raspberry Pi as a computer that fits in your palm — a low-cost, single-board computer that is easy to access and use. See Lecture 28 (Introduction to Raspberry Pi – Part I) @ 04:45"
+      },
+      {
+        "id": "IOT_W6_Q10",
+        "week": 6,
+        "topicId": 6,
+        "topicName": "Week 6: Python Programming for IoT & Raspberry Pi",
+        "number": 10,
+        "question": "Which command is used to install the GPIO library on Raspberry Pi before programming the blinking LED example?",
+        "options": [
+          "sudo apt-get install python-rpi.gpio",
+          "pip install gpio",
+          "sudo apt-get install led-lib",
+          "npm install rpi-gpio"
+        ],
+        "answerIndex": 0,
+        "correctAnswers": [
+          0
+        ],
+        "answer": "a",
+        "explanation": "After installing Python development tools using 'sudo apt-get install python-dev', the GPIO library is installed using 'sudo apt-get install python-rpi.gpio'. See Lecture 29 (Introduction to Raspberry Pi – Part II) @ 07:43"
+      },
+      {
+        "id": "IOT_W6_Q11",
+        "week": 6,
+        "topicId": 6,
+        "topicName": "Week 6: Python Programming for IoT & Raspberry Pi",
+        "number": 11,
+        "question": "Where is the CSI camera connector slot located on the Raspberry Pi board?",
+        "options": [
+          "Between the USB ports",
+          "Between the Ethernet port and the HDMI port",
+          "Next to the power supply pin",
+          "On the underside of the board"
+        ],
+        "answerIndex": 1,
+        "correctAnswers": [
+          1
+        ],
+        "answer": "b",
+        "explanation": "The Raspberry Pi Camera connects through a dedicated CSI slot, which is placed between the Ethernet port and the HDMI port on the board. See Lecture 29 (Introduction to Raspberry Pi – Part II) @ 18:27"
+      },
+      {
+        "id": "IOT_W6_Q12",
+        "week": 6,
+        "topicId": 6,
+        "topicName": "Week 6: Python Programming for IoT & Raspberry Pi",
+        "number": 12,
+        "question": "Which terminal command captures a still image using the Raspberry Pi camera?",
+        "options": [
+          "raspistill -o image.jpg",
+          "raspicam capture",
+          "pi-camera snap",
+          "capture.py --img"
+        ],
+        "answerIndex": 0,
+        "correctAnswers": [
+          0
+        ],
+        "answer": "a",
+        "explanation": "Running 'raspistill -o image.jpg' in the terminal captures an image using the Raspberry Pi camera and stores it as image.jpg. See Lecture 29 (Introduction to Raspberry Pi – Part II) @ 19:35"
+      },
+      {
+        "id": "IOT_W6_Q13",
+        "week": 6,
+        "topicId": 6,
+        "topicName": "Week 6: Python Programming for IoT & Raspberry Pi",
+        "number": 13,
+        "question": "What does DHT stand for in the DHT sensor used with Raspberry Pi in the auto-cooling system?",
+        "options": [
+          "Digital Heat Transfer",
+          "Digital Humidity and Temperature",
+          "Direct Hardware Trigger",
+          "Dual Humidity Thermostat"
+        ],
+        "answerIndex": 1,
+        "correctAnswers": [
+          1
+        ],
+        "answer": "b",
+        "explanation": "DHT stands for Digital Humidity and Temperature Sensor. It has 4 pins: PIN 1 (3.3V–5V power supply), PIN 2 (Data), PIN 3 (Null), and PIN 4 (Ground). See Lecture 30 (Implementation of IoT with Raspberry Pi – Part I) @ 05:20"
+      },
+      {
+        "id": "IOT_W6_Q14",
+        "week": 6,
+        "topicId": 6,
+        "topicName": "Week 6: Python Programming for IoT & Raspberry Pi",
+        "number": 14,
+        "question": "How many output terminals does the relay used in the temperature-dependent auto-cooling system have, as shown in the lecture?",
+        "options": [
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "answerIndex": 1,
+        "correctAnswers": [
+          1
+        ],
+        "answer": "b",
+        "explanation": "The relay is a mechanical/electromechanical switch with 3 output terminals (left to right): NO (normal open), Common, and NC (normal close). See Lecture 30 (Implementation of IoT with Raspberry Pi – Part I) @ 07:50"
+      },
+      {
+        "id": "IOT_W6_Q15",
+        "week": 6,
+        "topicId": 6,
+        "topicName": "Week 6: Python Programming for IoT & Raspberry Pi",
+        "number": 15,
+        "question": "State whether the following statement is True or False. Statement: In the temperature-dependent auto-cooling system, the fan operates when the surrounding temperature rises above the threshold value specified in the code.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answerIndex": 0,
+        "correctAnswers": [
+          0
+        ],
+        "answer": "a",
+        "explanation": "The lecture demonstrates that the fan is switched on whenever the measured temperature exceeds the threshold value set in the program. See Lecture 30 (Implementation of IoT with Raspberry Pi – Part I) @ 18:14"
+      },
+      {
+        "id": "IOT_W7_Q1",
+        "week": 7,
+        "topicId": 7,
+        "topicName": "Week 7: Implementation of IoT with Raspberry Pi, Socket Programming & SDN Intro",
+        "number": 1,
+        "question": "In the remote data logging system, which socket type is used to send sensor data from the client to the server?",
+        "options": [
+          "SOCK_STREAM",
+          "SOCK_DGRAM",
+          "SOCK_RAW",
+          "SOCK_SEQPACKET"
+        ],
+        "answerIndex": 1,
+        "correctAnswers": [
+          1
+        ],
+        "answer": "b",
+        "explanation": "The client creates a UDP socket using socket.socket(socket.AF_INET, socket.SOCK_DGRAM) to send the sensor readings to the server. See Lecture 31 (Implementation of IoT with Raspberry Pi – Part 2) @ 07:10"
+      },
+      {
+        "id": "IOT_W7_Q2",
+        "week": 7,
+        "topicId": 7,
+        "topicName": "Week 7: Implementation of IoT with Raspberry Pi, Socket Programming & SDN Intro",
+        "number": 2,
+        "question": "Which Adafruit function is used in the client code to read humidity and temperature values from the DHT sensor?",
+        "options": [
+          "Adafruit_DHT.read_retry()",
+          "Adafruit_DHT.get_data()",
+          "Adafruit_DHT.sense()",
+          "Adafruit_DHT.capture()"
+        ],
+        "answerIndex": 0,
+        "correctAnswers": [
+          0
+        ],
+        "answer": "a",
+        "explanation": "The sensordata() function calls Adafruit_DHT.read_retry(sensor,17), which returns the humidity and temperature values from the DHT sensor. See Lecture 31 (Implementation of IoT with Raspberry Pi – Part 2) @ 04:50"
+      },
+      {
+        "id": "IOT_W7_Q3",
+        "week": 7,
+        "topicId": 7,
+        "topicName": "Week 7: Implementation of IoT with Raspberry Pi, Socket Programming & SDN Intro",
+        "number": 3,
+        "question": "Where does the server in the remote data logging example save the data received from the client as mentioned in the lecture?",
+        "options": [
+          "In a MySQL database",
+          "In a text file named Datalog.txt",
+          "On a cloud dashboard",
+          "In an Excel spreadsheet"
+        ],
+        "answerIndex": 1,
+        "correctAnswers": [
+          1
+        ],
+        "answer": "b",
+        "explanation": "The server code opens 'Datalog.txt' in append mode and writes the received message from the client into this text file. See Lecture 31 (Implementation of IoT with Raspberry Pi – Part 2) @ 15:40"
+      },
+      {
+        "id": "IOT_W7_Q4",
+        "week": 7,
+        "topicId": 7,
+        "topicName": "Week 7: Implementation of IoT with Raspberry Pi, Socket Programming & SDN Intro",
+        "number": 4,
+        "question": "Which Python string function is used to split the comma-separated sensor data into separate values on the server?",
+        "options": [
+          "split()",
+          "divide()",
+          "partition()",
+          "separate()"
+        ],
+        "answerIndex": 0,
+        "correctAnswers": [
+          0
+        ],
+        "answer": "a",
+        "explanation": "The split() function splits a string into multiple strings based on a specified separator/delimiter, e.g. Data.split(\",\") splits data wherever a comma is found. See Lecture 32 (Implementation of IoT with Raspberry Pi – Part 3) @ 08:40"
+      },
+      {
+        "id": "IOT_W7_Q5",
+        "week": 7,
+        "topicId": 7,
+        "topicName": "Week 7: Implementation of IoT with Raspberry Pi, Socket Programming & SDN Intro",
+        "number": 5,
+        "question": "State whether the following statement is True or False. Statement: Matplotlib Python library is used to plot the temperature and humidity data received at the server in the lecture.",
+        "options": [
+          "False",
+          "True"
+        ],
+        "answerIndex": 1,
+        "correctAnswers": [
+          1
+        ],
+        "answer": "b",
+        "explanation": "MATPLOTLIB is a Python library used to create 2D plots; functions such as plot(), xlabel(), ylabel(), and title() are used to plot and label the sensor data. See Lecture 32 (Implementation of IoT with Raspberry Pi – Part 3) @ 12:15"
+      },
+      {
+        "id": "IOT_W7_Q6",
+        "week": 7,
+        "topicId": 7,
+        "topicName": "Week 7: Implementation of IoT with Raspberry Pi, Socket Programming & SDN Intro",
+        "number": 6,
+        "question": "Which matplotlib function turns on interactive mode so that the plot updates in real time as new data arrives?",
+        "options": [
+          "ion()",
+          "grid()",
+          "subplot()",
+          "figure()"
+        ],
+        "answerIndex": 0,
+        "correctAnswers": [
+          0
+        ],
+        "answer": "a",
+        "explanation": "ion() turns on the interactive mode in matplotlib. Other common plotting functions mentioned include figure(), grid(), subplot(), close(), and scatter(). See Lecture 32 (Implementation of IoT with Raspberry Pi – Part 3) @ 23:25"
+      },
+      {
+        "id": "IOT_W7_Q7",
+        "week": 7,
+        "topicId": 7,
+        "topicName": "Week 7: Implementation of IoT with Raspberry Pi, Socket Programming & SDN Intro",
+        "number": 7,
+        "question": "In a traditional (non-SDN) network, where does the routing protocol logic (e.g., OSPF) mainly execute?",
+        "options": [
+          "In a centralized controller",
+          "At the individual switches",
+          "On the end-user device",
+          "In the cloud"
+        ],
+        "answerIndex": 1,
+        "correctAnswers": [
+          1
+        ],
+        "answer": "b",
+        "explanation": "In the current network, protocols like OSPF execute at the switches, which forward traffic in a distributed manner with no centralized control. See Lecture 33 (Software-Defined Networking – Part I) @ 04:10"
+      },
+      {
+        "id": "IOT_W7_Q8",
+        "week": 7,
+        "topicId": 7,
+        "topicName": "Week 7: Implementation of IoT with Raspberry Pi, Socket Programming & SDN Intro",
+        "number": 8,
+        "question": "In which year was the OpenFlow project — from which the idea of software-defined networking originated — presented at ACM SIGCOMM?",
+        "options": [
+          "2006",
+          "2008",
+          "2009",
+          "2011"
+        ],
+        "answerIndex": 1,
+        "correctAnswers": [
+          1
+        ],
+        "answer": "b",
+        "explanation": "The idea of software-defined networking originated from the OpenFlow project, presented at ACM SIGCOMM in 2008. Stanford published the OpenFlow V1.0.0 specification the following year. See Lecture 33 (Software-Defined Networking – Part I) @ 10:50"
+      },
+      {
+        "id": "IOT_W7_Q9",
+        "week": 7,
+        "topicId": 7,
+        "topicName": "Week 7: Implementation of IoT with Raspberry Pi, Socket Programming & SDN Intro",
+        "number": 9,
+        "question": "What message does a switch send to the SDN controller when it receives a packet for which no matching flow-rule exists?",
+        "options": [
+          "PACKET-IN message",
+          "FLOW-REQUEST message",
+          "RULE-MISS alert",
+          "CONTROL-SYNC message"
+        ],
+        "answerIndex": 0,
+        "correctAnswers": [
+          0
+        ],
+        "answer": "a",
+        "explanation": "When no flow-rule is present for an incoming request, the switch sends a PACKET-IN message to the controller, which then decides a suitable flow-rule and inserts it at the switch. See Lecture 33 (Software-Defined Networking – Part I) @ 22:33"
+      },
+      {
+        "id": "IOT_W7_Q10",
+        "week": 7,
+        "topicId": 7,
+        "topicName": "Week 7: Implementation of IoT with Raspberry Pi, Socket Programming & SDN Intro",
+        "number": 10,
+        "question": "Which SDN API is used for communication between the control layer and the infrastructure layer?",
+        "options": [
+          "Northbound API",
+          "Southbound API",
+          "East-Westbound API",
+          "North-Southbound API"
+        ],
+        "answerIndex": 1,
+        "correctAnswers": [
+          1
+        ],
+        "answer": "b",
+        "explanation": "The Southbound API is used to communicate between the control layer and the infrastructure layer using the OpenFlow protocol. The Northbound API communicates between the control and application layers. See Lecture 34 (Software-Defined Networking – Part II) @ 02:00"
+      },
+      {
+        "id": "IOT_W7_Q11",
+        "week": 7,
+        "topicId": 7,
+        "topicName": "Week 7: Implementation of IoT with Raspberry Pi, Socket Programming & SDN Intro",
+        "number": 11,
+        "question": "According to the lecture, approximately how many requests per second can a typical SDN controller handle through a single thread?",
+        "options": [
+          "50",
+          "100",
+          "200",
+          "500"
+        ],
+        "answerIndex": 2,
+        "correctAnswers": [
+          2
+        ],
+        "answer": "c",
+        "explanation": "The lecture states that a controller can typically handle around 200 requests in a second through a single thread. See Lecture 34 (Software-Defined Networking – Part II) @ 04:10"
+      },
+      {
+        "id": "IOT_W7_Q12",
+        "week": 7,
+        "topicId": 7,
+        "topicName": "Week 7: Implementation of IoT with Raspberry Pi, Socket Programming & SDN Intro",
+        "number": 12,
+        "question": "Which control mechanism is described where the entire network's control decisions are taken by a single controller?",
+        "options": [
+          "Distributed control",
+          "Centralized control",
+          "Hierarchical control",
+          "Federated control"
+        ],
+        "answerIndex": 1,
+        "correctAnswers": [
+          1
+        ],
+        "answer": "b",
+        "explanation": "In centralized control, control decisions are taken in a centralized manner by a single controller, unlike distributed control where each subnetwork is controlled by a different controller. See Lecture 34 (Software-Defined Networking – Part II) @ 08:15"
+      },
+      {
+        "id": "IOT_W7_Q13",
+        "week": 7,
+        "topicId": 7,
+        "topicName": "Week 7: Implementation of IoT with Raspberry Pi, Socket Programming & SDN Intro",
+        "number": 13,
+        "question": "Which of the following is listed as a benefit of integrating SDN with IoT?",
+        "options": [
+          "Increased hardware cost",
+          "Visibility of network resources",
+          "Reduced sensor accuracy",
+          "Elimination of all controllers"
+        ],
+        "answerIndex": 1,
+        "correctAnswers": [
+          1
+        ],
+        "answer": "b",
+        "explanation": "Benefits of integrating SDN in IoT include intelligent routing decisions, simplified information collection/analysis/decision-making, visibility of network resources, and intelligent traffic pattern analysis. See Lecture 35 (Software-Defined IoT Networking – Part I) @ 02:50"
+      },
+      {
+        "id": "IOT_W7_Q14",
+        "week": 7,
+        "topicId": 7,
+        "topicName": "Week 7: Implementation of IoT with Raspberry Pi, Socket Programming & SDN Intro",
+        "number": 14,
+        "question": "According to the lecture, what is a key resource-constraint challenge in wireless sensor networks that motivates software-defined WSN?",
+        "options": [
+          "Excess bandwidth",
+          "Limited memory for control programs",
+          "Too many controllers",
+          "Unlimited computation power"
+        ],
+        "answerIndex": 1,
+        "correctAnswers": [
+          1
+        ],
+        "answer": "b",
+        "explanation": "Wireless sensor network challenges include real-time programming of sensor nodes, vendor-specific architecture, resource-constrained (heavy computation cannot be performed) devices, and limited memory, meaning too many control programs cannot be inserted. See Lecture 35 (Software-Defined IoT Networking – Part I) @ 08:10"
+      },
+      {
+        "id": "IOT_W7_Q15",
+        "week": 7,
+        "topicId": 7,
+        "topicName": "Week 7: Implementation of IoT with Raspberry Pi, Socket Programming & SDN Intro",
+        "number": 15,
+        "question": "In the SDN-WISE protocol stack for sensor nodes, what does \"INPP\" stand for?",
+        "options": [
+          "Integrated Node Path Protocol",
+          "Internal Node Power Processing",
+          "In Network Packet Processing",
+          "IoT Network Priority Protocol"
+        ],
+        "answerIndex": 2,
+        "correctAnswers": [
+          2
+        ],
+        "answer": "c",
+        "explanation": "In the SDN-WISE protocol stack, the forwarding layer above IEEE 802.15.4 consists of flow-rules, and INPP stands for In Network Packet Processing. See Lecture 35 (Software-Defined IoT Networking – Part I) @ 15:35"
+      },
+      {
+        "id": "IOT_W8_Q1",
+        "week": 8,
+        "topicId": 8,
+        "topicName": "Week 8: Software-Defined IoT Networking & Cloud Computing",
+        "number": 1,
+        "question": "Which of the following is listed as a problem in traditional (non-SDN) mobile networks?",
+        "options": [
+          "Too flexible hardware architecture",
+          "Excess centralized control",
+          "Very low operational cost",
+          "Difficult to scale due to static, over-provisioned networks"
+        ],
+        "answerIndex": 3,
+        "correctAnswers": [
+          3
+        ],
+        "answer": "d",
+        "explanation": "Traditional mobile networks are difficult to scale because static, over-provisioned networks are inflexible to manage high-demand mobile traffic; they are also difficult to manage, inflexible, and cost-expensive. See Lecture 36 (Software-Defined IoT Networking – Part II, slide 3)"
+      },
+      {
+        "id": "IOT_W8_Q2",
+        "week": 8,
+        "topicId": 8,
+        "topicName": "Week 8: Software-Defined IoT Networking & Cloud Computing",
+        "number": 2,
+        "question": "In the ODIN architecture for software-defined wireless networks, what does the 'Odin agent' do?",
+        "options": [
+          "It is placed at the controller end to manage policies",
+          "It replaces the OpenFlow protocol entirely",
+          "It is placed with the physical devices to communicate with the controller",
+          "It performs billing for cloud resources"
+        ],
+        "answerIndex": 2,
+        "correctAnswers": [
+          2
+        ],
+        "answer": "c",
+        "explanation": "In ODIN, an agent is placed at access points (with the physical devices) to communicate with the controller, while the Odin master resides at the controller end. See Lecture 36 (Software-Defined IoT Networking – Part II, slide 11)"
+      },
+      {
+        "id": "IOT_W8_Q3",
+        "week": 8,
+        "topicId": 8,
+        "topicName": "Week 8: Software-Defined IoT Networking & Cloud Computing",
+        "number": 3,
+        "question": "What is the primary goal of Mobi-Flow's proactive rule placement approach in Software-Defined IoT?",
+        "options": [
+          "To place flow-rules randomly across all access points",
+          "To predict users' future location and place flow-rules at APs accordingly",
+          "To eliminate the need for a controller",
+          "To increase the number of PACKET-IN messages"
+        ],
+        "answerIndex": 1,
+        "correctAnswers": [
+          1
+        ],
+        "answer": "b",
+        "explanation": "Mobi-Flow predicts the location of end-users at time (t+1) while they are at time (t), and places flow-rules at the access points that can be associated with the users based on their predicted locations, using an order-K Markov predictor. See Lecture 36 (Software-Defined IoT Networking – Part II, slides 15–16)"
+      },
+      {
+        "id": "IOT_W8_Q4",
+        "week": 8,
+        "topicId": 8,
+        "topicName": "Week 8: Software-Defined IoT Networking & Cloud Computing",
+        "number": 4,
+        "question": "Which simulation tool is mentioned in the lecture for experimenting with wireless software-defined networks, supporting both wired and wireless (IEEE 802.11) protocols?",
+        "options": [
+          "CloudSim",
+          "NS2",
+          "GreenCloud",
+          "Mininet-WiFi"
+        ],
+        "answerIndex": 3,
+        "correctAnswers": [
+          3
+        ],
+        "answer": "d",
+        "explanation": "Mininet-WiFi can be used to deploy a network supporting both wired (Ethernet) and wireless (WiFi, IEEE 802.11) protocols, while ONOS can be used to place the controllers. See Lecture 36 (Software-Defined IoT Networking – Part II, slide 21)"
+      },
+      {
+        "id": "IOT_W8_Q5",
+        "week": 8,
+        "topicId": 8,
+        "topicName": "Week 8: Software-Defined IoT Networking & Cloud Computing",
+        "number": 5,
+        "question": "According to the NIST definition quoted in the lecture, cloud computing enables on-demand network access to a shared pool of what?",
+        "options": [
+          "Fixed, dedicated hardware resources",
+          "Configurable computing resources",
+          "Only storage resources",
+          "Only networking resources"
+        ],
+        "answerIndex": 1,
+        "correctAnswers": [
+          1
+        ],
+        "answer": "b",
+        "explanation": "NIST defines cloud computing as a model for enabling convenient, on-demand network access to a shared pool of configurable computing resources such as networks, servers, storage, and applications. See Lecture 37 (Cloud Computing – Fundamentals, slide 4)"
+      },
+      {
+        "id": "IOT_W8_Q6",
+        "week": 8,
+        "topicId": 8,
+        "topicName": "Week 8: Software-Defined IoT Networking & Cloud Computing",
+        "number": 6,
+        "question": "Which of the following is one of the essential characteristics of cloud computing as defined by NIST?",
+        "options": [
+          "Rapid elasticity",
+          "Manual resource allocation",
+          "Single-tenant only access",
+          "Fixed billing regardless of usage"
+        ],
+        "answerIndex": 0,
+        "correctAnswers": [
+          0
+        ],
+        "answer": "a",
+        "explanation": "NIST lists rapid elasticity as an essential characteristic, meaning cloud resource allocation and release should be rapid, elastic, and automatic, giving consumers the impression of infinite resources. See Lecture 37 (Cloud Computing – Fundamentals, slide 9)"
+      },
+      {
+        "id": "IOT_W8_Q7",
+        "week": 8,
+        "topicId": 8,
+        "topicName": "Week 8: Software-Defined IoT Networking & Cloud Computing",
+        "number": 7,
+        "question": "Which cloud deployment model is set up for the exclusive use of a single organization, typically managed on-premises or by a third party off-premises?",
+        "options": [
+          "Public cloud",
+          "Private cloud",
+          "Community cloud",
+          "Multi-cloud"
+        ],
+        "answerIndex": 1,
+        "correctAnswers": [
+          1
+        ],
+        "answer": "b",
+        "explanation": "A private cloud is a cloud set-up functioned only for a single organization, typically managed by the organization itself (on-premises) or by a third party (off-premises). See Lecture 37 (Cloud Computing – Fundamentals, slide 20)"
+      },
+      {
+        "id": "IOT_W8_Q8",
+        "week": 8,
+        "topicId": 8,
+        "topicName": "Week 8: Software-Defined IoT Networking & Cloud Computing",
+        "number": 8,
+        "question": "Which of the following is given as an example of a public cloud provider in the lecture?",
+        "options": [
+          "Amazon Web Services (AWS)",
+          "A company's internal private data center",
+          "A single organization's dedicated server room",
+          "A community-only cloud shared by hospitals"
+        ],
+        "answerIndex": 0,
+        "correctAnswers": [
+          0
+        ],
+        "answer": "a",
+        "explanation": "Public cloud examples given include Amazon Web Services (AWS), Google Compute Engine, and Microsoft Azure — cloud set-ups available for the use of any person or industry. See Lecture 37 (Cloud Computing – Fundamentals, slide 19)"
+      },
+      {
+        "id": "IOT_W8_Q9",
+        "week": 8,
+        "topicId": 8,
+        "topicName": "Week 8: Software-Defined IoT Networking & Cloud Computing",
+        "number": 9,
+        "question": "Which cloud service model provides on-demand delivery of computing infrastructure such as servers, storage, network, and operating system?",
+        "options": [
+          "SaaS",
+          "PaaS",
+          "IaaS",
+          "DBaaS"
+        ],
+        "answerIndex": 2,
+        "correctAnswers": [
+          2
+        ],
+        "answer": "c",
+        "explanation": "Infrastructure-as-a-Service (IaaS) contains the basic building blocks for cloud IT, providing access to networking features, computers (virtual or dedicated hardware), storage, and operating systems. See Lecture 38 (Cloud Computing – Service Models, slide 4)"
+      },
+      {
+        "id": "IOT_W8_Q10",
+        "week": 8,
+        "topicId": 8,
+        "topicName": "Week 8: Software-Defined IoT Networking & Cloud Computing",
+        "number": 10,
+        "question": "In the IaaS working methodology, which component allows multiple virtual machines to share the same physical hardware?",
+        "options": [
+          "DNS server",
+          "Load balancer",
+          "Firewall",
+          "Hypervisor"
+        ],
+        "answerIndex": 3,
+        "correctAnswers": [
+          3
+        ],
+        "answer": "d",
+        "explanation": "In IaaS, the hypervisor sits above the physical hardware and manages multiple virtual machines (VMs), each running its own operating system, on a virtualized server. See Lecture 38 (Cloud Computing – Service Models, slide 5)"
+      },
+      {
+        "id": "IOT_W8_Q11",
+        "week": 8,
+        "topicId": 8,
+        "topicName": "Week 8: Software-Defined IoT Networking & Cloud Computing",
+        "number": 11,
+        "question": "Which cloud service model is described as 'application middleware offered as a service to developers', removing the need to manage underlying hardware and operating systems?",
+        "options": [
+          "IaaS",
+          "SaaS",
+          "PaaS",
+          "Community Cloud"
+        ],
+        "answerIndex": 2,
+        "correctAnswers": [
+          2
+        ],
+        "answer": "c",
+        "explanation": "Platform-as-a-Service (PaaS) removes the need for organizations to manage underlying infrastructure (hardware and OS) and lets developers focus on deploying and managing their applications; it is described as application middleware offered as a service. See Lecture 38 (Cloud Computing – Service Models, slide 15)"
+      },
+      {
+        "id": "IOT_W8_Q12",
+        "week": 8,
+        "topicId": 8,
+        "topicName": "Week 8: Software-Defined IoT Networking & Cloud Computing",
+        "number": 12,
+        "question": "What is the primary purpose of a Service Level Agreement (SLA) in cloud service management?",
+        "options": [
+          "To define the physical location of the data center",
+          "To define the non-functional requirements expected from the service provider",
+          "To specify the programming language used by the cloud provider",
+          "To list the hardware vendors used by the provider"
+        ],
+        "answerIndex": 1,
+        "correctAnswers": [
+          1
+        ],
+        "answer": "b",
+        "explanation": "An SLA defines the non-functional requirements expected from the service provider and provides a roadmap with clearly defined deliverables, describing the quality, utility, and warranty of services expected by the customer. See Lecture 39 (Cloud Computing – Service Management and Security, slide 4)"
+      },
+      {
+        "id": "IOT_W8_Q13",
+        "week": 8,
+        "topicId": 8,
+        "topicName": "Week 8: Software-Defined IoT Networking & Cloud Computing",
+        "number": 13,
+        "question": "In cloud service accounting and billing, what does 'service accounting' primarily aim to obtain?",
+        "options": [
+          "Resource usage information, typically in the form of records",
+          "The physical address of end-users",
+          "The source code of hosted applications",
+          "The marketing budget of the provider"
+        ],
+        "answerIndex": 0,
+        "correctAnswers": [
+          0
+        ],
+        "answer": "a",
+        "explanation": "Service accounting aims to obtain resource usage information, typically in the form of records, depending on infrastructure and service monitoring where usage information is obtained from metric measurements. See Lecture 39 (Cloud Computing – Service Management and Security, slide 5)"
+      },
+      {
+        "id": "IOT_W8_Q14",
+        "week": 8,
+        "topicId": 8,
+        "topicName": "Week 8: Software-Defined IoT Networking & Cloud Computing",
+        "number": 14,
+        "question": "What is the main purpose of using cloud simulators such as CloudSim before actual deployment?",
+        "options": [
+          "To permanently replace the need for real cloud infrastructure",
+          "To physically manufacture cloud hardware",
+          "To increase the billing cost of cloud services",
+          "To provide a reliable, scalable, and repeatable environment for pre-deployment performance evaluation"
+        ],
+        "answerIndex": 3,
+        "correctAnswers": [
+          3
+        ],
+        "answer": "d",
+        "explanation": "Simulation tools provide a reliable, scalable, and repeatable environment for performance evaluation, facilitating pre-deployment tests of services at no cost and enabling repeatable evaluation. See Lecture 40 (Cloud Computing – Case Studies, slides 2–3)"
+      },
+      {
+        "id": "IOT_W8_Q15",
+        "week": 8,
+        "topicId": 8,
+        "topicName": "Week 8: Software-Defined IoT Networking & Cloud Computing",
+        "number": 15,
+        "question": "CloudSim, a widely used cloud simulation framework, was developed at which institution and is based on which programming language?",
+        "options": [
+          "Stanford University, based on Python",
+          "CLOUDS Lab, University of Melbourne, based on Java",
+          "MIT, based on C++",
+          "IIT Kharagpur, based on JavaScript"
+        ],
+        "answerIndex": 1,
+        "correctAnswers": [
+          1
+        ],
+        "answer": "b",
+        "explanation": "CloudSim is a simulation framework that models cloud computing environments (data centers, VMs, applications, users, and network topology), written in a Java-based environment, and developed at the CLOUDS Lab of the University of Melbourne. See Lecture 40 (Cloud Computing – Case Studies, slide 5)"
       }
     ]
   }

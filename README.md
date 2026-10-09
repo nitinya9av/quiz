@@ -3,7 +3,7 @@ An interactive, multi-subject quiz platform featuring rich analytics, timed chal
 
 ---
 
-## 📚 Subject Catalog (330 Questions across 30 Modules)
+## 📚 Subject Catalog (420 Questions across 36 Modules)
 
 1. 🌲 **Forestry & Wildlife Ecology** (120 Questions • Weeks 1–12)
 2. 🌐 **Distributed Systems** (180 Questions • 16 Modules)
@@ -25,7 +25,15 @@ An interactive, multi-subject quiz platform featuring rich analytics, timed chal
      - **Practice Week 6**: Randomized Algorithms, Chord DHT & GFS Architecture (12 Qs)
      - **Practice Week 7**: MapReduce Framework, HDFS & Apache Spark (12 Qs)
      - **Practice Week 8**: Distributed Security, Kerberos, SSL & Blockchain (12 Qs)
-3. ⚡ **Introduction to Internet of Things (IoT)** (30 Questions • Weeks 1–2)
+3. ⚡ **Introduction to Internet of Things (IoT)** (120 Questions • Weeks 1–8)
+   - **Week 1**: Introduction to IoT & Sensors (15 Qs)
+   - **Week 2**: IoT Protocols, MQTT & CoAP (15 Qs)
+   - **Week 3**: Wireless Technologies, HART, Z-Wave, NFC, Bluetooth & Zigbee (15 Qs)
+   - **Week 4**: Sensor Networks, Agricultural Intrusion Detection & Nano-networks (15 Qs)
+   - **Week 5**: Interoperability in IoT, Arduino & Sensors (15 Qs)
+   - **Week 6**: Python Programming for IoT & Raspberry Pi (15 Qs)
+   - **Week 7**: Implementation of IoT with Raspberry Pi, Socket Programming & SDN Intro (15 Qs)
+   - **Week 8**: Software-Defined IoT Networking & Cloud Computing (15 Qs)
 
 ---
 
@@ -52,7 +60,7 @@ npx serve .
 ├── index.html              # Main application shell and UI
 ├── styles.css              # Design system, themes (Light, Dark, AMOLED), and animations
 ├── app.js                  # Core quiz engine, timer, scoring, sound synthesizer, and UI logic
-├── questions-data.js       # Master question repository (330 questions across 3 subjects)
+├── questions-data.js       # Master question repository (420 questions across 3 subjects)
 ├── build-data.js           # Build script to compile questions-data.js
 ├── parsed_new_subjects.json# Structured JSON data for Distributed Systems & IoT
 ├── data/                   # Original course assignment PDF files
