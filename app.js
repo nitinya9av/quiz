@@ -187,6 +187,7 @@ const appState = {
   quizQuestions: [],
   answersById: {},
   flagsById: {},
+  studyCheckedById: {},
   currentIndex: 0,
   quizMode: "practice",
   isSubmitted: false,
@@ -271,6 +272,7 @@ const closePaletteBtn = document.getElementById("closePaletteBtn");
 const paletteGrid = document.getElementById("paletteGrid");
 const progressBar = document.getElementById("progressBar");
 const currentTopicTag = document.getElementById("currentTopicTag");
+const questionTypeTag = document.getElementById("questionTypeTag");
 const flagQuestionBtn = document.getElementById("flagQuestionBtn");
 const questionText = document.getElementById("questionText");
 const instantFeedbackBox = document.getElementById("instantFeedbackBox");
@@ -278,6 +280,7 @@ const instantFeedbackStatus = document.getElementById("instantFeedbackStatus");
 const instantFeedbackExplanation = document.getElementById("instantFeedbackExplanation");
 const optionList = document.getElementById("optionList");
 const prevBtn = document.getElementById("prevBtn");
+const checkAnswerBtn = document.getElementById("checkAnswerBtn");
 const nextBtn = document.getElementById("nextBtn");
 const clearAnswerBtn = document.getElementById("clearAnswerBtn");
 const submitBtn = document.getElementById("submitBtn");
@@ -777,18 +780,42 @@ function quickStartSubjectQuiz(subjectId) {
 // -------------------------------------------------------------
 // QUIZ ARENA ENGINE
 // -------------------------------------------------------------
+function isQuestionAnswered(val) {
+  if (val === null || val === undefined) return false;
+  if (Array.isArray(val)) return val.length > 0;
+  return typeof val === "number" && !isNaN(val) && val >= 0;
+}
+
+function checkQuestionCorrect(selected, correctIndices) {
+  if (selected === null || selected === undefined) return false;
+  const userArr = Array.isArray(selected)
+    ? selected.filter((idx) => typeof idx === "number" && !isNaN(idx))
+    : (typeof selected === "number" && !isNaN(selected) && selected >= 0 ? [selected] : []);
+  if (userArr.length === 0) return false;
+  if (userArr.length !== correctIndices.length) return false;
+  return userArr.every((idx) => correctIndices.includes(idx));
+}
+
 function buildDisplayQuestion(question, shuffleOptions = true) {
   const isTrueFalse =
     Array.isArray(question.options) &&
     question.options.length === 2 &&
     (question.options.includes("True") || question.options.includes("False"));
 
+  const isMultiple = Boolean(
+    question.msq ||
+    question.isMultipleSelect ||
+    (Array.isArray(question.correctAnswers) && question.correctAnswers.length > 1)
+  );
+
+  const rawAnswers = Array.isArray(question.correctAnswers) && question.correctAnswers.length > 0
+    ? question.correctAnswers
+    : [question.answerIndex !== undefined ? question.answerIndex : 0];
+
   if (!shuffleOptions || isTrueFalse) {
-    const rawAnswers = Array.isArray(question.correctAnswers) && question.correctAnswers.length > 0
-      ? question.correctAnswers
-      : [question.answerIndex !== undefined ? question.answerIndex : 0];
     return {
       ...question,
+      isMultiple,
       displayOptions: [...question.options],
       answerDisplayIndex: question.answerIndex !== undefined ? question.answerIndex : 0,
       displayCorrectAnswers: rawAnswers
@@ -802,16 +829,13 @@ function buildDisplayQuestion(question, shuffleOptions = true) {
     question.answerIndex !== undefined ? question.answerIndex : 0
   );
 
-  const rawAnswers = Array.isArray(question.correctAnswers) && question.correctAnswers.length > 0
-    ? question.correctAnswers
-    : [question.answerIndex !== undefined ? question.answerIndex : 0];
-
   const displayCorrectAnswers = rawAnswers
     .map((origIdx) => shuffledIndices.indexOf(origIdx))
     .filter((idx) => idx !== -1);
 
   return {
     ...question,
+    isMultiple,
     displayOptions,
     answerDisplayIndex: answerDisplayIndex !== -1 ? answerDisplayIndex : 0,
     displayCorrectAnswers: displayCorrectAnswers.length > 0 ? displayCorrectAnswers : [0]
@@ -858,11 +882,13 @@ function launchQuizWithQuestions(questions, mode = "practice", durationSeconds =
   appState.result = null;
   appState.answersById = {};
   appState.flagsById = {};
+  appState.studyCheckedById = {};
   appState.quizStartTime = Date.now();
 
   preparedQuestions.forEach((q) => {
     appState.answersById[q.id] = null;
     appState.flagsById[q.id] = false;
+    appState.studyCheckedById[q.id] = false;
   });
 
   const subject = appState.subjects[appState.activeSubjectId] || { iconClass: "fa-solid fa-book-open", shortTitle: "Quiz" };
@@ -969,15 +995,31 @@ function renderActiveQuestion() {
   const current = appState.quizQuestions[appState.currentIndex];
   const selected = appState.answersById[current.id];
   const isFlagged = appState.flagsById[current.id];
+  const isMultiple = Boolean(current.isMultiple);
+  const isStudyChecked = Boolean(appState.studyCheckedById[current.id]);
+  const options = current.displayOptions || current.options;
+  const correctIndices = current.displayCorrectAnswers || [current.answerDisplayIndex];
 
   progressLabel.textContent = `Question ${appState.currentIndex + 1} of ${total}`;
   metaLabel.textContent = current.topicName || `Topic ${current.topicId || ""}`;
   currentTopicTag.textContent = current.topicName || "Question";
 
+  if (questionTypeTag) {
+    if (isMultiple) {
+      questionTypeTag.className = "question-type-chip msq";
+      questionTypeTag.innerHTML = `<i class="fa-solid fa-list-check" aria-hidden="true"></i> Multiple Choice (Select all that apply)`;
+      questionTypeTag.classList.remove("hidden");
+    } else {
+      questionTypeTag.className = "question-type-chip scq";
+      questionTypeTag.innerHTML = `<i class="fa-regular fa-circle-dot" aria-hidden="true"></i> Single Choice`;
+      questionTypeTag.classList.remove("hidden");
+    }
+  }
+
   const progressPercent = ((appState.currentIndex + 1) / total) * 100;
   progressBar.style.width = `${progressPercent}%`;
 
-  const answered = Object.values(appState.answersById).filter((v) => v !== null).length;
+  const answered = Object.values(appState.answersById).filter(isQuestionAnswered).length;
   liveScore.textContent = `Answered: ${answered}/${total}`;
 
   if (isFlagged) {
@@ -991,33 +1033,59 @@ function renderActiveQuestion() {
   questionText.textContent = current.question;
 
   optionList.innerHTML = "";
-  const options = current.displayOptions || current.options;
-  const correctIndices = current.displayCorrectAnswers || [current.answerDisplayIndex];
+  optionList.setAttribute("role", isMultiple ? "group" : "radiogroup");
+
+  const isRevealed = appState.isSubmitted || (appState.quizMode === "study" && isStudyChecked);
 
   options.forEach((optText, idx) => {
     const btn = document.createElement("button");
     btn.type = "button";
-    btn.className = "option-btn";
+    btn.className = "option-btn" + (isMultiple ? " msq-option" : "");
+
+    let isSelected = false;
+    if (isMultiple) {
+      isSelected = Array.isArray(selected) && selected.includes(idx);
+    } else {
+      isSelected = selected === idx || (Array.isArray(selected) && selected.includes(idx));
+    }
+
+    btn.setAttribute("aria-pressed", isSelected ? "true" : "false");
 
     const badge = document.createElement("span");
-    badge.className = "option-badge";
+    badge.className = `option-badge ${isMultiple ? "msq-badge-box" : ""}`;
     badge.textContent = LETTERS[idx] || String(idx + 1);
+
+    const indicator = document.createElement("span");
+    indicator.className = "option-indicator";
+    if (isMultiple) {
+      indicator.innerHTML = `<i class="${isSelected ? "fa-solid fa-square-check" : "fa-regular fa-square"}" aria-hidden="true"></i>`;
+    } else {
+      indicator.innerHTML = `<i class="${isSelected ? "fa-solid fa-circle-dot" : "fa-regular fa-circle"}" aria-hidden="true"></i>`;
+    }
 
     const label = document.createElement("span");
     label.className = "option-text";
     label.textContent = optText;
 
     btn.appendChild(badge);
+    btn.appendChild(indicator);
     btn.appendChild(label);
 
-    if (selected === idx) {
+    if (isSelected) {
       btn.classList.add("selected");
     }
 
-    if (appState.isSubmitted || (appState.quizMode === "study" && selected !== null)) {
-      if (correctIndices.includes(idx)) {
+    if (isRevealed) {
+      const isCorrectOpt = correctIndices.includes(idx);
+      if (isCorrectOpt) {
         btn.classList.add("correct");
-      } else if (selected === idx && !correctIndices.includes(selected)) {
+        if (isMultiple && !isSelected) {
+          const missedBadge = document.createElement("span");
+          missedBadge.className = "option-missed-label";
+          missedBadge.textContent = "Missed";
+          btn.appendChild(missedBadge);
+        }
+      } else if (isSelected) {
         btn.classList.add("incorrect");
       }
     }
@@ -1029,19 +1097,32 @@ function renderActiveQuestion() {
     optionList.appendChild(btn);
   });
 
-  if (appState.quizMode === "study" && selected !== null) {
-    const isCorrect = correctIndices.includes(selected);
+  if (appState.quizMode === "study" && isStudyChecked) {
+    const isCorrect = checkQuestionCorrect(selected, correctIndices);
     instantFeedbackBox.className = `instant-feedback-box ${isCorrect ? "correct" : "incorrect"}`;
     instantFeedbackStatus.innerHTML = isCorrect
       ? `<i class="fa-solid fa-circle-check text-ok"></i> Correct!`
-      : `<i class="fa-solid fa-circle-xmark text-danger"></i> Incorrect`;
-    
+      : `<i class="fa-solid fa-circle-xmark text-danger"></i> ${isMultiple ? "Not quite right" : "Incorrect"}`;
+
     const correctAnswersText = correctIndices.map((i) => `(${LETTERS[i]}) ${options[i]}`).join(", ");
     instantFeedbackExplanation.textContent =
       current.explanation || `The correct answer is ${correctAnswersText}.`;
     instantFeedbackBox.classList.remove("hidden");
   } else {
     instantFeedbackBox.classList.add("hidden");
+  }
+
+  if (checkAnswerBtn) {
+    if (appState.quizMode === "study" && isMultiple && !appState.isSubmitted) {
+      checkAnswerBtn.classList.remove("hidden");
+      const hasAnswer = isQuestionAnswered(selected);
+      checkAnswerBtn.disabled = !hasAnswer;
+      checkAnswerBtn.innerHTML = isStudyChecked
+        ? `<i class="fa-solid fa-rotate-right" aria-hidden="true"></i> Re-check Answer`
+        : `<i class="fa-solid fa-check-double" aria-hidden="true"></i> Check Answer`;
+    } else {
+      checkAnswerBtn.classList.add("hidden");
+    }
   }
 
   prevBtn.disabled = appState.currentIndex === 0;
@@ -1053,17 +1134,61 @@ function renderActiveQuestion() {
 function handleOptionSelect(optionIndex) {
   if (appState.isSubmitted) return;
   const current = appState.quizQuestions[appState.currentIndex];
-  appState.answersById[current.id] = optionIndex;
+  const isMultiple = Boolean(current.isMultiple);
+
+  if (isMultiple) {
+    const currentVal = appState.answersById[current.id];
+    let selArr = Array.isArray(currentVal)
+      ? [...currentVal]
+      : (typeof currentVal === "number" && currentVal >= 0 ? [currentVal] : []);
+
+    if (selArr.includes(optionIndex)) {
+      selArr = selArr.filter((i) => i !== optionIndex);
+    } else {
+      selArr.push(optionIndex);
+      selArr.sort((a, b) => a - b);
+    }
+
+    appState.answersById[current.id] = selArr.length > 0 ? selArr : null;
+
+    if (appState.quizMode === "study" && appState.studyCheckedById[current.id]) {
+      appState.studyCheckedById[current.id] = false;
+    }
+    soundEffects.click();
+  } else {
+    appState.answersById[current.id] = optionIndex;
+    const correctIndices = current.displayCorrectAnswers || [current.answerDisplayIndex];
+
+    if (appState.quizMode === "study") {
+      appState.studyCheckedById[current.id] = true;
+      if (correctIndices.includes(optionIndex)) {
+        soundEffects.correct();
+      } else {
+        soundEffects.incorrect();
+      }
+    } else {
+      soundEffects.click();
+    }
+  }
+
+  renderActiveQuestion();
+  renderQuestionPalette();
+}
+
+function handleCheckAnswer() {
+  if (appState.isSubmitted) return;
+  const current = appState.quizQuestions[appState.currentIndex];
+  const selected = appState.answersById[current.id];
+  if (!isQuestionAnswered(selected)) return;
 
   const correctIndices = current.displayCorrectAnswers || [current.answerDisplayIndex];
-  if (appState.quizMode === "study") {
-    if (correctIndices.includes(optionIndex)) {
-      soundEffects.correct();
-    } else {
-      soundEffects.incorrect();
-    }
+  appState.studyCheckedById[current.id] = true;
+
+  const isCorrect = checkQuestionCorrect(selected, correctIndices);
+  if (isCorrect) {
+    soundEffects.correct();
   } else {
-    soundEffects.click();
+    soundEffects.incorrect();
   }
 
   renderActiveQuestion();
@@ -1074,6 +1199,9 @@ function clearCurrentAnswer() {
   if (appState.isSubmitted) return;
   const current = appState.quizQuestions[appState.currentIndex];
   appState.answersById[current.id] = null;
+  if (appState.studyCheckedById) {
+    delete appState.studyCheckedById[current.id];
+  }
   soundEffects.click();
   renderActiveQuestion();
   renderQuestionPalette();
@@ -1099,7 +1227,7 @@ function renderQuestionPalette() {
     pill.textContent = String(idx + 1);
 
     const isCurrent = idx === appState.currentIndex;
-    const isAnswered = appState.answersById[q.id] !== null;
+    const isAnswered = isQuestionAnswered(appState.answersById[q.id]);
     const isFlagged = appState.flagsById[q.id];
 
     if (isCurrent) pill.classList.add("current");
@@ -1135,7 +1263,7 @@ function updatePaletteHighlight() {
 // -------------------------------------------------------------
 function submitQuiz(force = false) {
   const total = appState.quizQuestions.length;
-  const answered = Object.values(appState.answersById).filter((v) => v !== null).length;
+  const answered = Object.values(appState.answersById).filter(isQuestionAnswered).length;
 
   if (!force && answered < total) {
     const unanswered = total - answered;
@@ -1157,7 +1285,7 @@ function submitQuiz(force = false) {
   appState.quizQuestions.forEach((q) => {
     const selected = appState.answersById[q.id];
     const correctIndices = q.displayCorrectAnswers || [q.answerDisplayIndex];
-    const isCorrect = selected !== null && correctIndices.includes(selected);
+    const isCorrect = checkQuestionCorrect(selected, correctIndices);
     const topicKey = q.topicName || `Topic ${q.topicId || "General"}`;
 
     if (!topicStats[topicKey]) {
@@ -1233,8 +1361,8 @@ function renderResultsUI(isNewBest, prevBest) {
   }
 
   metricCorrect.textContent = res.correct;
-  metricIncorrect.textContent = res.mistakes.filter((m) => m.selected !== null).length;
-  metricUnanswered.textContent = res.mistakes.filter((m) => m.selected === null).length;
+  metricIncorrect.textContent = res.mistakes.filter((m) => isQuestionAnswered(m.selected)).length;
+  metricUnanswered.textContent = res.mistakes.filter((m) => !isQuestionAnswered(m.selected)).length;
   metricTimeSpent.textContent = formatTime(res.elapsedSeconds);
   const avgSpeed = res.total > 0 ? Math.round(res.elapsedSeconds / res.total) : 0;
   metricAvgSpeed.textContent = `${avgSpeed}s/q`;
@@ -1301,10 +1429,16 @@ function renderMistakesReview() {
       }
     }
 
-    const yourAns =
-      item.selected === null || item.selected === undefined || item.selected < 0 || item.selected >= options.length
-        ? "<span class='muted'>Not answered</span>"
-        : `<strong>(${LETTERS[item.selected] || item.selected + 1})</strong> ${options[item.selected] || ""}`;
+    const isMultiple = Boolean(q.isMultiple || q.msq || correctIndices.length > 1);
+    const userIndices = Array.isArray(item.selected)
+      ? item.selected.filter((idx) => typeof idx === "number" && idx >= 0 && idx < options.length)
+      : (typeof item.selected === "number" && item.selected >= 0 && item.selected < options.length ? [item.selected] : []);
+
+    const yourAns = userIndices.length === 0
+      ? "<span class='muted'>Not answered</span>"
+      : userIndices
+          .map((uIdx) => `<strong>(${LETTERS[uIdx] || uIdx + 1})</strong> ${options[uIdx] || ""}`)
+          .join(" <span class='muted'>•</span> ");
 
     const correctAns = correctIndices
       .map((cIdx) => `<strong>(${LETTERS[cIdx] || cIdx + 1})</strong> ${options[cIdx] || ""}`)
@@ -1312,7 +1446,12 @@ function renderMistakesReview() {
 
     card.innerHTML = `
       <div class="review-card-head">
-        <span><i class="fa-solid fa-bookmark"></i> ${q.topicName || "Topic"}</span>
+        <div class="question-tags-group">
+          <span><i class="fa-solid fa-bookmark"></i> ${q.topicName || "Topic"}</span>
+          <span class="review-type-chip ${isMultiple ? "msq" : "scq"}">
+            <i class="fa-solid ${isMultiple ? "fa-list-check" : "fa-circle-dot"}"></i> ${isMultiple ? "Multiple Select" : "Single Choice"}
+          </span>
+        </div>
         <span>ID: ${q.id || "Q"}</span>
       </div>
       <h3 class="review-question">${q.question}</h3>
@@ -1361,13 +1500,23 @@ function renderCorrectReview() {
       }
     }
 
+    const isMultiple = Boolean(q.isMultiple || q.msq || correctIndices.length > 1);
+    const userIndices = Array.isArray(item.selected)
+      ? item.selected.filter((idx) => typeof idx === "number" && idx >= 0 && idx < options.length)
+      : (typeof item.selected === "number" && item.selected >= 0 && item.selected < options.length ? [item.selected] : []);
+
     const correctAns = correctIndices
       .map((cIdx) => `<strong>(${LETTERS[cIdx] || cIdx + 1})</strong> ${options[cIdx] || ""}`)
       .join(" <span class='muted'>•</span> ");
 
     card.innerHTML = `
       <div class="review-card-head">
-        <span><i class="fa-solid fa-bookmark"></i> ${q.topicName || "Topic"}</span>
+        <div class="question-tags-group">
+          <span><i class="fa-solid fa-bookmark"></i> ${q.topicName || "Topic"}</span>
+          <span class="review-type-chip ${isMultiple ? "msq" : "scq"}">
+            <i class="fa-solid ${isMultiple ? "fa-list-check" : "fa-circle-dot"}"></i> ${isMultiple ? "Multiple Select" : "Single Choice"}
+          </span>
+        </div>
         <span>ID: ${q.id || "Q"}</span>
       </div>
       <h3 class="review-question">${q.question}</h3>
@@ -1623,10 +1772,22 @@ function handleKeyboardShortcuts(event) {
     return;
   }
 
-  if (key === "Enter" && appState.currentIndex < appState.quizQuestions.length - 1) {
-    appState.currentIndex += 1;
-    soundEffects.click();
-    renderActiveQuestion();
+  if (key === "Enter") {
+    const current = appState.quizQuestions[appState.currentIndex];
+    const isMultiple = Boolean(current && current.isMultiple);
+    const selected = current ? appState.answersById[current.id] : null;
+    const isStudyChecked = current ? Boolean(appState.studyCheckedById[current.id]) : false;
+
+    if (appState.quizMode === "study" && isMultiple && isQuestionAnswered(selected) && !isStudyChecked) {
+      handleCheckAnswer();
+      return;
+    }
+
+    if (appState.currentIndex < appState.quizQuestions.length - 1) {
+      appState.currentIndex += 1;
+      soundEffects.click();
+      renderActiveQuestion();
+    }
   }
 }
 
@@ -1743,6 +1904,9 @@ function bindEvents() {
 
   flagQuestionBtn.addEventListener("click", toggleQuestionFlag);
   clearAnswerBtn.addEventListener("click", clearCurrentAnswer);
+  if (checkAnswerBtn) {
+    checkAnswerBtn.addEventListener("click", handleCheckAnswer);
+  }
 
   prevBtn.addEventListener("click", () => {
     if (appState.currentIndex > 0) {

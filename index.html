@@ -311,7 +311,10 @@
       <!-- Active Question Card -->
       <div class="question-card">
         <div class="question-card-head">
-          <span class="topic-tag-chip" id="currentTopicTag">Topic</span>
+          <div class="question-tags-group">
+            <span class="topic-tag-chip" id="currentTopicTag">Topic</span>
+            <span class="question-type-chip hidden" id="questionTypeTag"><i class="fa-solid fa-list-check" aria-hidden="true"></i> Multiple Select</span>
+          </div>
           <button id="flagQuestionBtn" class="flag-btn" type="button"
             title="Bookmark question to review before submitting">
             <i id="flagIcon" class="fa-regular fa-bookmark" aria-hidden="true"></i>
@@ -337,6 +340,9 @@
         <div class="nav-button-group">
           <button id="prevBtn" class="btn btn-secondary" type="button">
             <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Previous
+          </button>
+          <button id="checkAnswerBtn" class="btn btn-primary btn-check-answer hidden" type="button">
+            <i class="fa-solid fa-check-double" aria-hidden="true"></i> Check Answer
           </button>
           <button id="nextBtn" class="btn btn-secondary" type="button">
             Next <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
